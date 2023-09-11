@@ -10,6 +10,9 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { PostDetailsComponent } from './Components/post-details/post-details.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
