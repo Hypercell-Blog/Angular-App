@@ -10,6 +10,9 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselComponent } from "./Components/home/carousel/carousel.component";
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,14 @@ import { PostDetailsComponent } from './Components/post-details/post-details.com
     ContactComponent,
     PostComponent,
     HomeComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
