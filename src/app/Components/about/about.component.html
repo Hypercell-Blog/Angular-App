@@ -1,1 +1,23 @@
-<p>about works!</p>
+
+<div>
+    <div class="text-center">
+        <p class="h1">Lorem ipsum dolor sit</p>
+        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    </div>
+    
+    <div>
+        <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile *ngFor="let i of list">
+                <mat-card class="example-card">
+                    <img mat-card-image src="../../../assets/images/girl.jpg" alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <mat-card-title>{{i.name}}</mat-card-title>
+                        <mat-card-subtitle>{{i.role}}</mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+  
+  

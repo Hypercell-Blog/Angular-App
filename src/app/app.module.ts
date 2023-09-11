@@ -13,6 +13,8 @@ import { PostDetailsComponent } from './Components/post-details/post-details.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from "./Components/home/carousel/carousel.component";
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
