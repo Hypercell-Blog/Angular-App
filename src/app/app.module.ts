@@ -10,6 +10,9 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { PostDetailsComponent } from './Components/post-details/post-details.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
