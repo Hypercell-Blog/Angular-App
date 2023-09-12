@@ -1,0 +1,25 @@
+
+ 
+ .text-container {
+   font-size: 20px;
+   position: absolute;
+ }
+
+
+
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 40px;
+  color: rgb(139, 139, 139);
+  opacity: 0.5;
+}
+
+.active{
+  color: black;
+}
