@@ -11,10 +11,13 @@ import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { CarouselComponent } from "./Components/home/carousel/carousel.component";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +35,10 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatIconModule,
+
+  
+
     MatGridListModule,
     MatCardModule,
     MatButtonModule
