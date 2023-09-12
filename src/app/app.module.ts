@@ -17,6 +17,10 @@ import { PostViewComponent } from './Components/post/post-view/post-view.compone
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { CarouselComponent } from './Components/home/carousel/carousel.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -29,17 +33,21 @@ import { MatIconModule } from '@angular/material/icon';
     PostDetailsComponent,
     PostListComponent,
     PostViewComponent,
+    CarouselComponent
 
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule,
+    ReactiveFormsModule
+
 
   ],
   providers: [],

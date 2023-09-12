@@ -1,4 +1,18 @@
 <div class="row text-left d-flex justify-content-center" >
+   <form class="my-5">
+    <fieldset>
+      <div class="mx-3 d-flex">
+        <input
+          type="text"
+          id="textInput"
+          class="form-control mx-3"
+          style="width: 30%"
+          placeholder=" post title"
+        />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </fieldset>
+  </form>
   <div class=" col-md-6 col-sm-8 mt-5" style="width:500px" *ngFor="let item of items">
     <mat-card class="example-card">
       <mat-card-header>
@@ -21,7 +35,7 @@
         <h3>Posted 22/8/202</h3>
       </mat-card-content>
       <mat-card-actions class="d-flex justify-content-end">
-        <button mat-raised-button color="primary" >View Post</button>
+        <button mat-raised-button color="primary" [routerLink]="['post-details']">View Post</button>
       </mat-card-actions>
     </mat-card>
   </div>
