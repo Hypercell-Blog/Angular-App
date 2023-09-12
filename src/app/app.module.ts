@@ -12,6 +12,13 @@ import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CarouselComponent } from "./Components/home/carousel/carousel.component";
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,12 +30,21 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactComponent,
     PostComponent,
     HomeComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+
+  
+
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
