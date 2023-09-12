@@ -6,7 +6,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
   }
 ];
 

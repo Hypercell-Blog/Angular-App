@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { UserModule } from './Components/user/user.module';
+import { UserRoutingModule } from './Components/user/user-routing.module';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { UserModule } from './Components/user/user.module';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    UserModule
+    UserModule,
+    UserRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
