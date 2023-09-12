@@ -1,0 +1,30 @@
+<div class="row text-left d-flex justify-content-center" >
+  <div class=" col-md-6 col-sm-8 mt-5" style="width:500px" *ngFor="let item of items">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Maro</mat-card-title>
+        <mat-card-subtitle>Hello there</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="user img"
+      />
+      <mat-card-content class="my-2">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
+          pariatur non quisquam reprehenderit architecto, quos velit, cupiditate
+          impedit itaque et eum nulla blanditiis nesciunt sit dignissimos vitae
+          maiores iste ipsum!
+        </p>
+        <h3>Posted 22/8/202</h3>
+      </mat-card-content>
+      <mat-card-actions class="d-flex justify-content-end">
+        <button mat-raised-button color="primary" >View Post</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<mat-paginator style="font-size: large;" class="m-5" [length]="items.length" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
+</mat-paginator>

@@ -7,9 +7,16 @@ import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { AboutComponent } from './Components/about/about.component';
 import { ContactComponent } from './Components/contact/contact.component';
-import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
-import { PostDetailsComponent } from './Components/post-details/post-details.component';
+import { PostDetailsComponent } from './Components/post/post-details/post-details.component';
+import { PostListComponent } from './Components/post/post-list/post-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { PostViewComponent } from './Components/post/post-view/post-view.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,13 +25,22 @@ import { PostDetailsComponent } from './Components/post-details/post-details.com
     FooterComponent,
     AboutComponent,
     ContactComponent,
-    PostComponent,
     HomeComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    PostListComponent,
+    PostViewComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatPaginatorModule,
+    MatIconModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
