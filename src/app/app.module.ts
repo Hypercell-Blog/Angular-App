@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -11,14 +10,13 @@ import { PostComponent } from './Components/post/post.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostDetailsComponent } from './Components/post-details/post-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { CarouselComponent } from "./Components/home/carousel/carousel.component";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { UserModule } from './Components/user/user.module';
 
 
 @NgModule({
@@ -31,7 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     PostComponent,
     HomeComponent,
     PostDetailsComponent,
-    CarouselComponent
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,12 +37,10 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
-
-  
-
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
