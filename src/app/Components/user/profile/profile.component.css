@@ -3,9 +3,10 @@
 }
 
 .example-sidenav {
-    width: 25%;
+    width: 20%;
     text-align: center;
-    overflow-y: hidden;
+    background-color: #f8f9fa;
+    border-right: none;
 }
 
 .example-sidenav img{
@@ -14,10 +15,6 @@
     border-radius: 50%; 
     background-size: contain;
 }
-
-/* .example-sidenav img:hover{
-    
-} */
 
 .info{
     display: inline-block;
@@ -30,11 +27,15 @@
     cursor: pointer;
 }
 
-.info a:hover{
-    opacity: 0.8;
+.info a h3:hover{
+    color: #3f51b5;
 }
 
 .primary-color{
     color: #3f51b5;
 }
   
+.container{
+    border: 0.5px solid #e5e7e9;
+    border-radius: 10px;
+}

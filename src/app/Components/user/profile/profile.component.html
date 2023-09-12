@@ -5,7 +5,7 @@
         <div class="info">
             <h1 class="fw-medium">{{user.name}}</h1>
             <p class="about">{{user.bio}}</p>
-            <button mat-raised-button>Edit Profile</button>
+            <button mat-raised-button color="primary">Edit Profile</button>
             <div class="d-flex mt-4">
                 <mat-icon aria-hidden="false" aria-label="Example phone icon" fontIcon="phone"></mat-icon>
                 <h3 class="mx-1">{{user.phone}}</h3>
@@ -43,16 +43,19 @@
     <div class="example-sidenav-content">    
         <div class="container">
             <h1 class="fw-medium m-3">Friends</h1>
-            <div class="slider">
-
-            </div>
         </div>
-        <div class="container d-flex justify-content-between">
-            <div class="title">
-                <h1 class="fw-medium m-3">Posts</h1>
+        <div class="container mt-2">
+            <div class="d-flex justify-content-between">
+                <div class="title">
+                    <h1 class="fw-medium m-3">Posts</h1>
+                </div>
+                <div class="button mt-3">
+                    <button mat-raised-button color="primary">Add Post</button>
+                </div>
             </div>
-            <div class="button mt-3">
-                <button mat-raised-button color="primary">Add Post</button>
+            
+            <div>
+                <!-- POSTS HERE -->
             </div>
         </div>
     </div>
