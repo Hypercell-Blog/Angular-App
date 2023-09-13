@@ -8,10 +8,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PostModule } from '../post/post.module';
+import { SearchFormComponent } from '../search-form/search-form.component';
+import { PostRoutingModule } from '../post/post-routing.module';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    SearchFormComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import { PostModule } from '../post/post.module';
     MatCardModule,
     MatListModule,
     MatTabsModule,
-    PostModule
+    PostModule,
+    PostRoutingModule
   ],
   exports: [
     ProfileComponent
