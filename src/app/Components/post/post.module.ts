@@ -7,6 +7,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import {MatCardModule} from '@angular/material/card';
 import { PostRoutingModule } from "./post-routing.module";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { PostRoutingModule } from "./post-routing.module";
         MatPaginatorModule,
         MatButtonModule,
         MatCardModule,
-        PostRoutingModule
+        PostRoutingModule,
+        MatIconModule
     ],
     exports: [
         PostDetailsComponent,
