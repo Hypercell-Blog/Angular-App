@@ -1,0 +1,47 @@
+<div class="row text-left d-flex justify-content-around" >
+  <div class=" col-md-6 col-sm-8 mt-5" >
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="width: 100px; height: 100px" ></div>
+        <div class="d-flex justify-content-center flex-column mx-4" >
+          <mat-card-title style="font-size: 25px;">Maro</mat-card-title>
+          <mat-card-subtitle class="text-primary">22/8/2022</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+       <h3 style="font-size: 22px; font-weight: 500;" class="mx-5">Posted Title</h3>
+
+      <img
+        mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="user img"
+      />
+      <mat-card-content class="my-5" style="font-size: 22px; line-height:1.5">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
+          pariatur non quisquam reprehenderit architecto, quos velit, cupiditate
+          impedit itaque et eum nulla blanditiis nesciunt sit dignissimos vitae
+          maiores iste ipsum!
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class=" col-md-6 col-sm-8 mt-5" style="width:600px" >
+    <h2 style="font-size:35px; text-align:center; font-weight:500">Comments</h2>
+    <div *ngFor="let comment of comments">
+      <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="width: 80px; height: 80px" ></div>
+        <div class="d-flex justify-content-center flex-column mx-4" >
+          <mat-card-title style="font-size: 25px;">Maro</mat-card-title>
+          <mat-card-subtitle class="text-primary">22/8/2022</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content class="my-3" style="font-size: 22px; line-height:1.5">
+        <p>
+          wow this is beautiful!
+        </p>
+      </mat-card-content>
+    </mat-card>
+    </div>
+  </div>
+</div>
