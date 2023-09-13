@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav'; 
+import { UserService } from 'src/app/services/user-service.service';
 
 
 
@@ -18,7 +19,19 @@ export interface User {
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+
+export class ProfileComponent implements OnInit {
+  idFlag = false;
+  user1!: User;
+  constructor(private userService: UserService){
+    
+  }
+  ngOnInit(): void {
+    this.user1 = this.userService.getUser();
+    console.log(this.user1);
+  }
+
+
   user: User = {
     picUrl: '../../../../assets/images/LeviAckerman.jpg',
     name: 'Levi Acerman',
@@ -28,4 +41,6 @@ export class ProfileComponent {
     facebook: 'Gehad28',
     groups: ['Backend Developers', 'Frontend Developers', 'Attack On Titan Fans']
   }
+
+  
 }

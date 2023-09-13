@@ -1,12 +1,12 @@
 
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="true">
-        <img src="{{user.picUrl}}">
+    <mat-drawer #drawer class="example-sidenav mt-2" mode="side" [opened]="true">
+        <img src="{{user1.picUrl}}">
         <div class="info">
             <h1 class="fw-medium">{{user.name}}</h1>
-            <p class="about">{{user.bio}}</p>
-            <button mat-raised-button color="primary">Edit Profile</button>
-            <!-- <button mat-raised-button color="primary">Add Friend</button> -->
+            <!-- <p class="about">{{user.bio}}</p> -->
+            <button mat-raised-button color="primary" *ngIf="idFlag">Edit Profile</button>
+            <button mat-raised-button color="primary" *ngIf="!idFlag">Add Friend</button>
 
             <mat-card class="mt-3 mb-3">
                 <mat-card-content>
@@ -35,50 +35,27 @@
                         <h2 class="fw-medium primary-color d-inline">Groups</h2>
                         <mat-list role="list" *ngFor="let group of user.groups">
                             <a class="link-dark">
-                                <!-- <mat-card>
-                                    <mat-card-content>{{group}}</mat-card-content>
-                                </mat-card> -->
                                 {{group}}
                             </a>
                         </mat-list>
                     </div>
                 </mat-card-content>
             </mat-card>
-
-
         </div>
-
-
-
     </mat-drawer>
 
     <div class="example-sidenav-content">
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" dynamicHeight>
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="tab" dynamicHeight>
             <mat-tab label="Posts">
-                <div class="button mt-3 tab-content">
-                    <button mat-raised-button color="primary" [routerLink]="['post-form']">Add Post</button>
+                <div class="d-flex w-100">
+                    <div class="mt-3 tab-content">
+                        <button mat-raised-button color="primary">Add Post</button>
+                    </div>
+                    <!-- <app-search-form></app-search-form> -->
                 </div>
-                <router-outlet></router-outlet>
-                <app-post-list></app-post-list>
+                <app-post-list [searchFlag]="false"></app-post-list>
             </mat-tab>
             <mat-tab label="Friends">Content 2</mat-tab>
         </mat-tab-group>
-
-        <!-- <div class="container">
-            <h1 class="fw-medium m-3">Friends</h1>
-        </div>
-        <div class="container mt-2">
-            <div class="d-flex justify-content-between">
-                <div class="title">
-                    <h1 class="fw-medium m-3">Posts</h1>
-                </div>
-                <div class="button mt-3">
-                    <button mat-raised-button color="primary">Add Post</button>
-                </div>
-            </div>
-
-            <div>
-            </div>
-        </div> -->
     </div>
 </mat-drawer-container>

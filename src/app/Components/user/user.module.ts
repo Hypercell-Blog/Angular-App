@@ -13,10 +13,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { UserRoutingModule } from './user-routing.module';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SearchFormComponent } from '../search-form/search-form.component';
+import { PostRoutingModule } from '../post/post-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     ProfileComponent,
-    PostFormComponent
+    SearchFormComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PostRoutingModule,
+    HttpClientModule
   ],
   exports: [
     ProfileComponent
