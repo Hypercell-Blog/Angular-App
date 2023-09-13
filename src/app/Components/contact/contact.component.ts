@@ -13,9 +13,9 @@ export class ContactComponent {
    )
    {
      this.firstform = this._fb.group({
-      Name :[null],
-      Email :[null],
-      Message :[null]
+      name :[null],
+      email :[null],
+      message :[null]
 
     })
   }

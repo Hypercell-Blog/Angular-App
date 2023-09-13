@@ -15,6 +15,9 @@ import { CarouselComponent } from "./Components/home/carousel/carousel.component
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { UserModule } from './Components/user/user.module';
 import { UserRoutingModule } from './Components/user/user-routing.module';
@@ -31,7 +34,9 @@ import { SearchFormComponent } from './Components/search-form/search-form.compon
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    CarouselComponent
+    CarouselComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { SearchFormComponent } from './Components/search-form/search-form.compon
     MatButtonModule,
     UserModule,
     UserRoutingModule,
+    HttpClientModule,
     PostModule,
     PostRoutingModule
   ],
