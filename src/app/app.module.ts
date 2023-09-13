@@ -18,6 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { UserModule } from './Components/user/user.module';
+import { UserRoutingModule } from './Components/user/user-routing.module';
 
 
 @NgModule({
@@ -40,12 +42,11 @@ import { RegisterComponent } from './Components/register/register.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
-
-  
-
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    UserModule,
+    UserRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
