@@ -1,5 +1,5 @@
-<div class="row text-left d-flex justify-content-center" >
-   <form class="my-5">
+<div class="row text-left d-flex justify-content-center">
+  <form class="my-5">
     <fieldset>
       <div class="mx-3 d-flex">
         <input
@@ -13,32 +13,112 @@
       </div>
     </fieldset>
   </form>
-  <div class=" col-md-6 col-sm-8 mt-5" style="width:500px" *ngFor="let item of items">
-    <mat-card class="example-card">
+  <div
+    class="col-md-6 col-sm-8 mt-5"
+    style="width: 500px"
+    *ngFor="let post of postList"
+  >
+    <mat-card class="example-card" *ngIf="!post.shared_post">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Maro</mat-card-title>
-        <mat-card-subtitle>Hello there</mat-card-subtitle>
+        <div mat-card-avatar class="example-header-image">
+          <img mat-card-image [src]="'data:image/png;base64,' + post.user_image"alt="user img" />
+
+        </div>
+        <mat-card-title>{{ post.user_name }}</mat-card-title>
+        <mat-card-subtitle>{{ post.post_date }}</mat-card-subtitle>
       </mat-card-header>
-      <img
-        mat-card-image
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="user img"
-      />
+      <mat-card-content class="my-2">
+        <p>{{ post.post_desc }}</p>
+      </mat-card-content>
+      <mat-card class="example-card m-4">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+          <img mat-card-image [src]="'data:image/png;base64,' + post.shared_post.user_image" alt="user img" />
+          </div>
+          <mat-card-title>{{ post.shared_post }}</mat-card-title>
+          <mat-card-subtitle>Hello there</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="'data:image/png;base64,' + post.post_image"alt="user img" />
+        <mat-card-content class="my-2">
+          <p>
+            {{ post.shared_post }}
+          </p>
+          <h3>Posted 22/8/202</h3>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-around">
+          <button mat-icon-button color="warn" (click)="onLoveClick()">
+            <mat-icon *ngIf="!isLoved">favorite_border</mat-icon>
+            <mat-icon *ngIf="isLoved">favorite</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="onLikeClick()">
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button mat-icon-button color="primary">
+            <mat-icon>share</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card-actions class="d-flex justify-content-around">
+        <span>10k</span>
+        <button mat-icon-button color="warn" (click)="onLoveClick()">
+          <mat-icon *ngIf="!isLoved">favorite_border</mat-icon>
+          <mat-icon *ngIf="isLoved">favorite</mat-icon>
+        </button>
+        <span>12k</span>
+        <button mat-icon-button color="primary" (click)="onLikeClick()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <span>5</span>
+        <button mat-icon-button color="primary">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="example-card" *ngIf="post.shared_post">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+          <img mat-card-image [src]="'data:image/png;base64,' + post.user_image"alt="user img" />
+        </div>
+        <mat-card-title>{{ post.user_name }}</mat-card-title>
+        <mat-card-subtitle>{{ post.post_date }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="post.post_image" alt="user img" />
       <mat-card-content class="my-2">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
-          pariatur non quisquam reprehenderit architecto, quos velit, cupiditate
-          impedit itaque et eum nulla blanditiis nesciunt sit dignissimos vitae
-          maiores iste ipsum!
+          {{ post.post_desc }}
         </p>
-        <h3>Posted 22/8/202</h3>
       </mat-card-content>
-      <mat-card-actions class="d-flex justify-content-end">
-        <button mat-raised-button color="primary" [routerLink]="['post-details']">View Post</button>
+      <mat-card-actions class="d-flex justify-content-around">
+        <span>10k</span>
+        <button mat-icon-button color="warn" (click)="onLoveClick()">
+          <mat-icon *ngIf="!isLoved">favorite_border</mat-icon>
+          <mat-icon *ngIf="isLoved">favorite</mat-icon>
+        </button>
+        <span>12k</span>
+        <button mat-icon-button color="primary" (click)="onLikeClick()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <span>5</span>
+        <button mat-icon-button color="primary">
+          <mat-icon>share</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['post-details']"
+        >
+          View Post
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
 </div>
-<mat-paginator style="font-size: large;" class="m-5" [length]="items.length" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
+<mat-paginator
+  style="font-size: large"
+  class="m-5"
+  [length]="postList.length"
+  [pageSizeOptions]="[5, 10, 15]"
+  aria-label="Select page"
+>
 </mat-paginator>

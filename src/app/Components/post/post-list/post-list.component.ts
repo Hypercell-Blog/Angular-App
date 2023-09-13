@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../../services/post-service.service';
 import { FormGroup, FormControl } from "@angular/forms"
 
@@ -8,30 +8,39 @@ import { FormGroup, FormControl } from "@angular/forms"
   styleUrls: ['./post-list.component.css'],
 
 })
+
 export class PostListComponent implements OnInit {
-  items =[1,2,3,4]
-  posts = []
+  isLoved: boolean = false;
+  isLike: boolean = false;
   postSearchForm!: FormGroup;
 
-  constructor(
-    private _api: ApiService
-  ) { }
+
+  constructor(  ) {
+
+  }
 
   ngOnInit(): void {
-    // this._api.getPosts().subscribe(
-    //   {
-    //     next: (posts) => console.log(posts)
-    //   }
-    // )
 
     this.postSearchForm = new FormGroup({
       postTitle: new FormControl('Title 1'),
 
     });
-}
+
+
+  }
+
   onSearchPost() {
     // this._api.searchPost(this.postSearchForm.value).subscribe({
     //   next: (res) => console.log(res)
     // })
   }
+  onLoveClick() {
+    this.isLoved = !this.isLoved
+  }
+  onLikeClick() {
+    this.isLike = !this.isLike
+  }
+
+  @Input() postList:any;
 }
+
