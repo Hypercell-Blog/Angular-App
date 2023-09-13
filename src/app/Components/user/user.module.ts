@@ -10,6 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { PostModule } from '../post/post.module';
 import { SearchFormComponent } from '../search-form/search-form.component';
 import { PostRoutingModule } from '../post/post-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PostRoutingModule } from '../post/post-routing.module';
     MatListModule,
     MatTabsModule,
     PostModule,
-    PostRoutingModule
+    PostRoutingModule,
+    HttpClientModule
   ],
   exports: [
     ProfileComponent

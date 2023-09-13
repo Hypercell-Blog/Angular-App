@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 
 
@@ -20,7 +19,6 @@ export interface User {
 })
 
 export class ProfileComponent {
-
   user: User = {
     picUrl: '../../../../assets/images/LeviAckerman.jpg',
     name: 'Levi Acerman',
