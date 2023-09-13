@@ -1,11 +1,14 @@
-h1{
+h1 {
     text-align: center;
 }
-.center{
-    width: 90%;
+
+.center {
+    width: 95%;
+    margin: auto;
     padding: 90px 250px;
-    
+
 }
-.mb-4{
+
+.mb-4 {
     text-align: center;
 }

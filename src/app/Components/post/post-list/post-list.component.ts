@@ -12,6 +12,10 @@ import { FormGroup, FormControl } from "@angular/forms"
 export class PostListComponent implements OnInit {
   isLoved: boolean = false;
   isLike: boolean = false;
+  @Input() searchFlag: boolean = true;
+
+  items =[1,2,3,4]
+  posts = []
   postSearchForm!: FormGroup;
 
 
