@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/post-service.service';
 import { FormGroup, FormControl } from "@angular/forms"
 
@@ -9,6 +9,8 @@ import { FormGroup, FormControl } from "@angular/forms"
 
 })
 export class PostListComponent implements OnInit {
+  @Input() searchFlag: boolean = true;
+  
   items =[1,2,3,4]
   posts = []
   postSearchForm!: FormGroup;

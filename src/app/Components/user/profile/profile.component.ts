@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 
@@ -18,7 +18,9 @@ export interface User {
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent {
+
   user: User = {
     picUrl: '../../../../assets/images/LeviAckerman.jpg',
     name: 'Levi Acerman',
@@ -28,4 +30,6 @@ export class ProfileComponent {
     facebook: 'Gehad28',
     groups: ['Backend Developers', 'Frontend Developers', 'Attack On Titan Fans']
   }
+
+  
 }
