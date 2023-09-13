@@ -1,0 +1,63 @@
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="true">
+        <img src="{{user.picUrl}}">
+        <div class="info">
+            <h1 class="fw-medium">{{user.name}}</h1>
+            <p class="about">{{user.bio}}</p>
+            <button mat-raised-button color="primary">Edit Profile</button>
+            <div class="d-flex mt-4">
+                <mat-icon aria-hidden="false" aria-label="Example phone icon" fontIcon="phone"></mat-icon>
+                <h3 class="mx-1">{{user.phone}}</h3>
+            </div>
+            <div class="d-flex">
+                <mat-icon aria-hidden="false" aria-label="Example email icon" fontIcon="email"></mat-icon>
+                <a href="{{'mailto:' + user.email}}" target="_blank" class="link-dark">
+                    <h3 class="mx-1">{{user.email}}</h3>
+                </a>
+            </div>
+            <div class="d-flex">
+                <mat-icon aria-hidden="false" aria-label="Example facebook icon" fontIcon="facebook"></mat-icon>
+                <a href="{{'https://www.facebook.com/' + user.facebook + '/'}}" target="_blank" class="link-dark">
+                    <h3 class="mx-1">{{user.facebook}}</h3>
+                </a>
+            </div>
+            
+            <div class="groups">
+                <h2 class="fw-medium primary-color d-inline">Groups</h2>
+                <mat-list role="list" *ngFor="let group of user.groups">
+                    <a class="link-dark">
+                        <!-- <mat-card>
+                            <mat-card-content>{{group}}</mat-card-content>
+                        </mat-card> -->
+                        {{group}}
+                    </a>
+                </mat-list> 
+            </div>
+        </div>
+
+        
+
+    </mat-drawer>
+
+    <div class="example-sidenav-content">    
+        <div class="container">
+            <h1 class="fw-medium m-3">Friends</h1>
+        </div>
+        <div class="container mt-2">
+            <div class="d-flex justify-content-between">
+                <div class="title">
+                    <h1 class="fw-medium m-3">Posts</h1>
+                </div>
+                <div class="button mt-3">
+                    <button mat-raised-button color="primary">Add Post</button>
+                </div>
+            </div>
+            
+            <div>
+                <!-- POSTS HERE -->
+            </div>
+        </div>
+    </div>
+</mat-drawer-container>
+  
