@@ -23,6 +23,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { UserModule } from './Components/user/user.module';
 import { UserRoutingModule } from './Components/user/user-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { UserRoutingModule } from './Components/user/user-routing.module';
     MatCardModule,
     MatButtonModule,
     UserModule,
-    UserRoutingModule
+    UserRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
