@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     ProfileComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    PostFormComponent
   ],
   imports: [
     CommonModule,
