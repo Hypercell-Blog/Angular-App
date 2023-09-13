@@ -20,7 +20,11 @@ const routes: Routes = [
   },
   {
     path: "post-details",
-    component: PostDetailsComponent
+    component: PostDetailsComponent,
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
   }
 ];
 

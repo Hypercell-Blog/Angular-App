@@ -1,0 +1,41 @@
+.example-container {
+    height: 100%;
+}
+
+.example-sidenav {
+    width: 20%;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+.example-sidenav img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; 
+    background-size: contain;
+}
+
+.info{
+    display: inline-block;
+    text-align: left;
+}
+
+
+.info a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.info a h3:hover{
+    color: #3f51b5;
+}
+
+.primary-color{
+    color: #3f51b5;
+}
+  
+.container{
+    border: 0.5px solid #e5e7e9;
+    border-radius: 10px;
+}
