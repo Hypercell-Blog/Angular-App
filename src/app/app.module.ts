@@ -7,11 +7,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { AboutComponent } from './Components/about/about.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { HomeComponent } from './Components/home/home.component';
-import { PostListComponent } from './Components/post/post-list/post-list.component';
-import { PostViewComponent } from './Components/post/post-view/post-view.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { PostDetailsComponent } from './Components/post/post-details/post-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from "./Components/home/carousel/carousel.component";
@@ -21,6 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { UserModule } from './Components/user/user.module';
 import { UserRoutingModule } from './Components/user/user-routing.module';
+import { PostModule } from './Components/post/post.module';
+import { PostRoutingModule } from './Components/post/post-routing.module';
 
 
 @NgModule({
@@ -31,13 +30,10 @@ import { UserRoutingModule } from './Components/user/user-routing.module';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    PostDetailsComponent,
-    PostListComponent,
-    PostViewComponent,
-    CarouselComponent,
+    CarouselComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -48,7 +44,9 @@ import { UserRoutingModule } from './Components/user/user-routing.module';
     MatCardModule,
     MatButtonModule,
     UserModule,
-    UserRoutingModule
+    UserRoutingModule,
+    PostModule,
+    PostRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

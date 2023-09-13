@@ -7,6 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
+import { PostModule } from '../post/post.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatCardModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    PostModule
   ],
   exports: [
     ProfileComponent

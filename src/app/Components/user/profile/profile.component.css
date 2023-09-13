@@ -44,3 +44,8 @@
 .tab-content{
     overflow: hidden !important;
 }
+
+
+mat-tab-group{
+    overflow: hidden;
+}
