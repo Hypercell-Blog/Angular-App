@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent {
-
+  comments=[1,2,3,4]
 }

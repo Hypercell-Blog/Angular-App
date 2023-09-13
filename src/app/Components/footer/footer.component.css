@@ -1,0 +1,22 @@
+.center{
+    padding: 20px;
+    text-align: center;
+    color: white;
+
+}
+input{
+    width: 90%; 
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+}
+
+.mb-3{
+    height: 50px;
+}
+button{
+    width: 80px; 
+    height: 30px;
+    border-radius: 6px;
+}

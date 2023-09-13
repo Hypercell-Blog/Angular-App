@@ -1,19 +1,26 @@
 
-<div class="carousel">
-    <ng-container *ngFor="let slide of slides; let i = index">
-      <img *ngIf="i === currentSlide" [src]="slide.src" class="slide"/>
-    </ng-container>
 
-    <div class="text-container mx-5" *ngFor="let slide of slides; let i = index">
-        <h3 *ngIf="i === currentSlide" class="text-secondary">Navigating the business world</h3>
-        <h1 *ngIf="i === currentSlide">{{slide.headline}}</h1>
-        <p  *ngIf="i === currentSlide" class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
+<div class="carousel">
+  <div class="slide">
+    <mat-grid-list cols="2" rowHeight="4:3">
+      <mat-grid-tile>
+        <div class="text-container mx-5" *ngFor="let slide of slides; let i = index">
+          <h3 *ngIf="i === currentIndex" class="text-secondary">Navigating the business world</h3>
+          <h1 *ngIf="i === currentIndex">{{slide.title}}</h1>
+          <p  *ngIf="i === currentIndex" class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <img src="{{getUrl()}}" class="img-fluid image" alt="...">
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
   
-    <button class="control prev" (click)="onPreviousClick()">
-      <span class="arrow left"></span>
-    </button>
-    <button class="control next" (click)="onNextClick()">
-      <span class="arrow right"></span>
-    </button>
+  
+  <div class="dotsContainer carousel slide">
+    <div #ele class="dot" 
+         *ngFor="let slide of slides; let slideIndex = index" 
+         (click)="goToSlide(slideIndex)"
+         [ngClass]="{'active': slideIndex == currentIndex}">•</div>
+  </div>
 </div>
