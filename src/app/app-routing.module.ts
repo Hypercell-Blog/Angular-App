@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'user-profile',
     loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'create-post',
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
   }
 ];
 

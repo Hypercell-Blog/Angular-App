@@ -40,28 +40,29 @@
                                 </mat-card> -->
                                 {{group}}
                             </a>
-                        </mat-list> 
+                        </mat-list>
                     </div>
                 </mat-card-content>
             </mat-card>
-            
-            
+
+
         </div>
 
-        
+
 
     </mat-drawer>
 
-    <div class="example-sidenav-content">   
+    <div class="example-sidenav-content">
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" dynamicHeight>
             <mat-tab label="Posts">
                 <div class="button mt-3 tab-content">
-                    <button mat-raised-button color="primary">Add Post</button>
+                    <button mat-raised-button color="primary" [routerLink]="['post-form']">Add Post</button>
                 </div>
+                <router-outlet></router-outlet>
                 <app-post-list></app-post-list>
             </mat-tab>
             <mat-tab label="Friends">Content 2</mat-tab>
-        </mat-tab-group> 
+        </mat-tab-group>
 
         <!-- <div class="container">
             <h1 class="fw-medium m-3">Friends</h1>
@@ -75,10 +76,9 @@
                     <button mat-raised-button color="primary">Add Post</button>
                 </div>
             </div>
-            
+
             <div>
             </div>
         </div> -->
     </div>
 </mat-drawer-container>
-  

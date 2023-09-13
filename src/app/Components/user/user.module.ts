@@ -8,10 +8,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PostModule } from '../post/post.module';
-
+import { PostFormComponent } from './post-form/post-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { UserRoutingModule } from './user-routing.module';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    PostFormComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,11 @@ import { PostModule } from '../post/post.module';
     MatCardModule,
     MatListModule,
     MatTabsModule,
-    PostModule
+    PostModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    UserRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProfileComponent
