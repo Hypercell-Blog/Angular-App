@@ -53,12 +53,12 @@
     </mat-drawer>
 
     <div class="example-sidenav-content">   
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" dynamicHeight>
             <mat-tab label="Posts">
                 <div class="button mt-3 tab-content">
                     <button mat-raised-button color="primary">Add Post</button>
                 </div>
-                <!-- POSTS HERE -->
+                <app-post-list></app-post-list>
             </mat-tab>
             <mat-tab label="Friends">Content 2</mat-tab>
         </mat-tab-group> 
