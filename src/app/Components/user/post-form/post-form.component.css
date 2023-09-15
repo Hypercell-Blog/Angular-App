@@ -2,7 +2,7 @@
   margin: auto;
   width: 60%;
   height: 70%;
-  padding-top: 40px;
+  /* padding-top: 40px; */
 }
 .mb-4 {
 text-align: center;
@@ -10,6 +10,6 @@ text-align: center;
 h1
 {
   text-align: center;
-  font-family: Georgia,'Times New Roman',Times, serif;
+  /* font-family: Georgia,'Times New Roman',Times, serif; */
   font-size: 35px;
 }

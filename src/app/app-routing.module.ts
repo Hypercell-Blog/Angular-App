@@ -6,6 +6,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PostDetailsComponent } from './Components/post/post-details/post-details.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,12 @@ const routes: Routes = [
   {
     path: 'create-post',
     loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
-  }
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+}
 ];
 
 @NgModule({

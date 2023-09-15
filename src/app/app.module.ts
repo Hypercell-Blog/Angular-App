@@ -20,15 +20,12 @@ import { RegisterComponent } from './Components/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { UserModule } from './Components/user/user.module';
-import { UserRoutingModule } from './Components/user/user-routing.module';
 import { PostModule } from './Components/post/post.module';
-import { PostRoutingModule } from './Components/post/post-routing.module';
-import { SearchFormComponent } from './Components/search-form/search-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    // HeaderComponent,
     FooterComponent,
     AboutComponent,
     ContactComponent,
@@ -49,11 +46,9 @@ import { SearchFormComponent } from './Components/search-form/search-form.compon
     MatCardModule,
     MatButtonModule,
     UserModule,
-    UserRoutingModule,
     HttpClientModule,
     PostModule,
-    PostRoutingModule,
-
+    HeaderComponent
 
   ],
   providers: [],

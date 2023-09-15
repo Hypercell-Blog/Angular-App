@@ -1,61 +1,111 @@
+<app-header></app-header>
 
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav mt-2" mode="side" [opened]="true">
-        <img src="{{user1.picUrl}}">
-        <div class="info">
-            <h1 class="fw-medium">{{user.name}}</h1>
-            <!-- <p class="about">{{user.bio}}</p> -->
-            <button mat-raised-button color="primary" *ngIf="idFlag">Edit Profile</button>
-            <button mat-raised-button color="primary" *ngIf="!idFlag">Add Friend</button>
+<mat-sidenav-container class="example-container" (backdropClick)="close()">
+    <mat-sidenav #sidenav class="example-sidenav" (keydown.escape)="close()" disableClose [opened]="true" mode="side">
+        <div class="profilepic">
+            <img *ngIf="user1.picUrl != null" src="{{user1.picUrl}}" class="m-3">
+            <div class="profilepic__content">
+                <label for="formFile" class="profilepic__text d-flex flex-column">
+                    <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
+                    Change Photo
+                </label>
+                <input class="form-control" type="file" id="formFile" (change)="onChange($event)" hidden>
+            </div>
+        </div>
+        <form *ngIf="editForm" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()" class="m-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingName" formControlName="name" value="{{user1.name}}">
+                <label for="floatingName">Name</label>
+            </div>
+            <div class="form-floating">
+                <textarea type="text" rows="10" class="form-control mt-2" id="floatingBio" formControlName="bio" value="{{user1.bio}}"></textarea>
+                <label for="floatingBio">Bio</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control mt-2" id="floatingInput" formControlName="email" value="{{user1.email}}">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control mt-2" id="floatingFacebook" formControlName="facebook" value="{{user1.facebook}}">
+                <label for="floatingFacebook">Facebook Username</label>
+            </div>
+            <button type="submit" mat-raised-button color="primary" class="mt-2">Submit</button>
+        </form>
 
+        <h1 class="fw-medium" *ngIf="!editForm">{{user1.name}}</h1>
+            
+        <mat-divider *ngIf="!editForm" class="divider"></mat-divider>
+        <div class="info m-3" *ngIf="!editForm">
+            <p *ngIf="user1.bio != null" class="about">{{user1.bio}}</p>
+            <button mat-raised-button color="primary" *ngIf="id == currentUserId" (click)="editProfile()">Edit Profile</button>
+            <button mat-raised-button color="primary" *ngIf="id != currentUserId && !isFriend" (click)="addFriend()">Add Friend</button>
+            <button mat-raised-button color="primary" *ngIf="id != currentUserId &&  isFriend" (click)="deleteFriend()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="check"></mat-icon>Friend
+            </button>
             <mat-card class="mt-3 mb-3">
                 <mat-card-content>
-                    <div class="d-flex">
+                    <div *ngIf="user1.phone != null" class="d-flex">
                         <mat-icon aria-hidden="false" aria-label="Example phone icon" fontIcon="phone"></mat-icon>
-                        <h3 class="mx-1">{{user.phone}}</h3>
+                        <h3 class="mx-1">{{user1.phone}}</h3>
                     </div>
                     <div class="d-flex">
                         <mat-icon aria-hidden="false" aria-label="Example email icon" fontIcon="email"></mat-icon>
-                        <a href="{{'mailto:' + user.email}}" target="_blank" class="link-dark">
-                            <h3 class="mx-1">{{user.email}}</h3>
+                        <a href="{{'mailto:' + user1.email}}" target="_blank" class="link-dark">
+                            <h3 class="mx-1">{{user1.email}}</h3>
                         </a>
                     </div>
-                    <div class="d-flex">
+                    <div *ngIf="user1.facebook != null" class="d-flex">
                         <mat-icon aria-hidden="false" aria-label="Example facebook icon" fontIcon="facebook"></mat-icon>
-                        <a href="{{'https://www.facebook.com/' + user.facebook + '/'}}" target="_blank" class="link-dark">
-                            <h3 class="mx-1">{{user.facebook}}</h3>
+                        <a href="{{'https://www.facebook.com/' + user1.facebook + '/'}}" target="_blank" class="link-dark">
+                            <h3 class="mx-1">{{user1.facebook}}</h3>
                         </a>
                     </div>
                 </mat-card-content>
             </mat-card>
 
-            <mat-card>
+            <!-- <mat-card>
                 <mat-card-content>
-                    <div class="groups">
+                    <div *ngIf="user1.groups != []" class="groups">
                         <h2 class="fw-medium primary-color d-inline">Groups</h2>
-                        <mat-list role="list" *ngFor="let group of user.groups">
+                        <mat-list role="list" *ngFor="let group of user1.groups">
                             <a class="link-dark">
                                 {{group}}
                             </a>
                         </mat-list>
                     </div>
                 </mat-card-content>
-            </mat-card>
+            </mat-card> -->
         </div>
-    </mat-drawer>
+    </mat-sidenav>
 
-    <div class="example-sidenav-content">
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="tab" dynamicHeight>
-            <mat-tab label="Posts">
-                <div class="d-flex w-100">
-                    <div class="mt-3 tab-content">
-                        <button mat-raised-button color="primary">Add Post</button>
-                    </div>
-                    <!-- <app-search-form></app-search-form> -->
+  <mat-sidenav-content>
+    <button mat-icon-button [ngClass]="{'button':true,'open':opened}" (click)="toggle()" class="example-icon toggle-button" aria-label="Example icon button with a menu icon">
+        <mat-icon color="primary">menu</mat-icon>
+    </button>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="mt-2 mx-2" dynamicHeight>
+        <mat-tab label="Posts">
+            <div class="d-flex flex-sm-row flex-column justify-content-around">
+                <div class="mt-3 mx-2">
+                    <button mat-raised-button color="primary" (click)="openDialog()">Add Post</button>
                 </div>
-                <app-post-list [searchFlag]="false"></app-post-list>
-            </mat-tab>
-            <mat-tab label="Friends">Content 2</mat-tab>
-        </mat-tab-group>
-    </div>
-</mat-drawer-container>
+                <app-search-form></app-search-form>
+            </div>
+            <app-post-list [searchFlag]="false"></app-post-list>
+        </mat-tab>
+        <mat-tab label="Friends">
+            <div>
+                <mat-grid-list cols="2" rowHeight="2:1" *ngFor="let friend of friendsList">
+                    <mat-grid-tile>
+                        <mat-card>
+                            <mat-card-content>
+                                <!-- <img src="{{friend.picUrl}}"> -->
+                                {{friend}}
+                            </mat-card-content>
+                        </mat-card>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+  </mat-sidenav-content>
+</mat-sidenav-container>

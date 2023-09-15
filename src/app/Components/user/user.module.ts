@@ -16,12 +16,16 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchFormComponent } from '../search-form/search-form.component';
 import { PostRoutingModule } from '../post/post-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { HeaderComponent } from '../header/header.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     SearchFormComponent,
-    PostFormComponent
+    PostFormComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,11 @@ import { HttpClientModule } from '@angular/common/http';
     UserRoutingModule,
     ReactiveFormsModule,
     PostRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDividerModule,
+    MatGridListModule,
+    HeaderComponent,
+    MatDialogModule
   ],
   exports: [
     ProfileComponent
