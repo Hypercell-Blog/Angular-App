@@ -85,8 +85,8 @@
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="mt-2 mx-2" dynamicHeight>
             <mat-tab label="Posts">
                 <div class="d-flex flex-sm-row flex-column justify-content-around">
-                    <div class="mt-3 mx-2">
-                        <button mat-raised-button color="primary" (click)="openDialog()">Add Post</button>
+                    <div class="mt-3 mx-2" *ngIf="id == currentUserId">
+                        <button mat-raised-button color="primary"  (click)="openDialog()">Add Post</button>
                     </div>
                     <app-search-form></app-search-form>
                 </div>
