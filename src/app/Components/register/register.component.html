@@ -21,10 +21,17 @@
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label"> Confirm Password</label>
                 <input formControlName="Confirmpassword" type="password" class="form-control"
-                    id="exampleInputPassword1">
+                    id="exampleInputPassword2">
             </div>
             <div *ngIf="getError('Confirmpassword', 'required')" class="text-danger py-3">This field is required</div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div *ngIf="getError('Confirmpassword', 'confirmPasswordMatch')" class="text-danger py-3">
+                Password and Confirm Password do not match.</div>
+            <div class="button">
+                <button mat-raised-button color="primary">Submit</button>
+                <p>Have an account?<a [routerLink]="['login']">Login</a></p>
+            </div>
+            
         </form>
+        
     </div>
 </div>
