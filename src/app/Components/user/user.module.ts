@@ -8,13 +8,20 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PostModule } from '../post/post.module';
+import { PostFormComponent } from './post-form/post-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { UserRoutingModule } from './user-routing.module';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchFormComponent } from '../search-form/search-form.component';
 import { PostRoutingModule } from '../post/post-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    PostFormComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +32,12 @@ import { PostRoutingModule } from '../post/post-routing.module';
     MatListModule,
     MatTabsModule,
     PostModule,
-    PostRoutingModule
+    MatFormFieldModule,
+    MatSelectModule,
+    UserRoutingModule,
+    ReactiveFormsModule,
+    PostRoutingModule,
+    HttpClientModule
   ],
   exports: [
     ProfileComponent

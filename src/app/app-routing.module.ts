@@ -4,6 +4,8 @@ import { HomeComponent } from './Components/home/home.component';
 import { AboutComponent } from './Components/about/about.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { PostDetailsComponent } from './Components/post/post-details/post-details.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   {
@@ -19,11 +21,23 @@ const routes: Routes = [
     component: ContactComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: "post-details",
     component: PostDetailsComponent,
   },
   {
     path: 'user-profile',
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'create-post',
     loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
   }
 ];

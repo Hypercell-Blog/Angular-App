@@ -9,7 +9,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { HomeComponent } from './Components/home/home.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from "./Components/home/carousel/carousel.component";
 import {MatCardModule} from '@angular/material/card';
@@ -24,7 +24,6 @@ import { UserRoutingModule } from './Components/user/user-routing.module';
 import { PostModule } from './Components/post/post.module';
 import { PostRoutingModule } from './Components/post/post-routing.module';
 import { SearchFormComponent } from './Components/search-form/search-form.component';
-
 
 @NgModule({
   declarations: [
@@ -53,7 +52,9 @@ import { SearchFormComponent } from './Components/search-form/search-form.compon
     UserRoutingModule,
     HttpClientModule,
     PostModule,
-    PostRoutingModule
+    PostRoutingModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

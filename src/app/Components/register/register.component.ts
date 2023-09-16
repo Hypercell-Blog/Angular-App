@@ -41,7 +41,7 @@ export class RegisterComponent {
   }
 
   submitForm() {
-    this.userService.registerUser(this.registerform)
+    this.userService.registerUser(this.registerform.value);
   }
 
 
