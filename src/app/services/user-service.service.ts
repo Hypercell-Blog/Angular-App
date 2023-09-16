@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 // import { baseUrl } from 'src/environments/environment';
 
-const baseUrl = 'api/user/';
-// const baseUrl = 'https://jsonplaceholder.typicode.com/';
+// const baseUrl = 'api/user/';
+const baseUrl = 'https://jsonplaceholder.typicode.com/';
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +34,7 @@ export class UserService {
     }
 
     login(userData: any): Observable<any> {
-        return this._http.post(`${baseUrl}login`, userData);
+        return this._http.post(`${baseUrl}posts`, userData);
     }
 
     getUser(id: string): Observable<any>{

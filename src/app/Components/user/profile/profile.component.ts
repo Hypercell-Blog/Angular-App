@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewC
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav'; 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouteReuseStrategy, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
 import { PostFormComponent } from '../post-form/post-form.component';
 
@@ -27,7 +27,7 @@ export interface User {
 
 export class ProfileComponent implements OnInit, OnDestroy {
 
-  id!: string;                // id in routerLink
+  id!: any;                // id in routerLink
   currentUserId!: string;     // user id from local storage
   private sub: any;
   private subButton: any;
@@ -56,7 +56,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService, 
               private route: ActivatedRoute,
               private matDialog: MatDialog,
-              private _fb: FormBuilder,){
+              private _fb: FormBuilder,
+              private routerReuse: RouteReuseStrategy){
+    this.routerReuse.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   getUser(userId: string){
@@ -73,36 +77,33 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.screenWidth = window.innerWidth;
     };
 
-
-    
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; 
+    this.sub = this.route.children[0].paramMap.subscribe(params => {
+      this.id = params.get('id'); 
       this.user = this.getUser(this.id);
-    });
 
-    this.currentUserId = this.userService.getUserId();    
+      this.currentUserId = this.userService.getUserId();    
 
-
-    this.subCheck = this.userService.checkFriend(this.currentUserId, this.id).subscribe({
-      next: (response: boolean) => {
-        if(response == true){
-          this.isFriend = true;
-        }
-        else{
-          this.isFriend = false;
-        }
+      if(this.currentUserId != this.id){
+        this.subCheck = this.userService.checkFriend(this.currentUserId, this.id).subscribe({
+          next: (response: boolean) => {
+            if(response == true){
+              this.isFriend = true;
+            }
+            else{
+              this.isFriend = false;
+            }
+          }
+        });
       }
-    });
 
-    this.subFriends = this.userService.getFriends(this.currentUserId).subscribe({
-      next: (friends: any) => this.friendsList = friends
+      this.subFriends = this.userService.getFriends(this.currentUserId).subscribe({
+        next: (friends: any) => this.friendsList = friends
+      });
     });
-
-    
   }
 
   ngOnDestroy(): void {
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
     // this.subButton.unsubscribe();
     // this.subCheck.unsubscribe();
     // this.subFriends.unsubscribe();
@@ -179,6 +180,29 @@ export class ProfileComponent implements OnInit, OnDestroy {
     facebook: 'Gehad28',
     // groups: ['Backend Developers', 'Frontend Developers', 'Attack On Titan Fans']
   }
+
+  friends = [
+    {
+      id: 2,
+      name: 'Friend 1',
+      picUrl: '../../../../assets/images/img.jpg'
+    },
+    {
+      id: 3,
+      name: 'Friend 2',
+      picUrl: '../../../../assets/images/img.jpg'
+    },
+    {
+      id: 4,
+      name: 'Friend 3',
+      picUrl: '../../../../assets/images/img.jpg'
+    },
+    {
+      id: 5,
+      name: 'Friend 4',
+      picUrl: '../../../../assets/images/img.jpg'
+    }
+  ]
   
   toggle(){
     this.opened = !this.opened;

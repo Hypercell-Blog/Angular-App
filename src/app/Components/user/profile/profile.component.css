@@ -1,5 +1,6 @@
 .example-container {
     height: auto;
+    min-height: 100%;
 }
 
 
@@ -9,7 +10,6 @@
     max-width: 60%;
     text-align: center;
     background-color: #f8f9fa;
-    height: auto;
 }
 
 .profilepic {
@@ -103,4 +103,24 @@
   
 .change-photo{
     cursor: pointer;
+}
+
+
+
+.friend-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.friend-card{
+    text-decoration: none;
+}
+
+.friend-card:hover{
+    opacity: 0.8;
+}
+
+.friend-card h3:hover{
+    color: #3f51b5;
 }

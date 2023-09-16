@@ -25,7 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
   declarations: [
     ProfileComponent,
     SearchFormComponent,
-    PostFormComponent,
+    PostFormComponent
   ],
   imports: [
     CommonModule,
