@@ -65,7 +65,7 @@ export class RegisterComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
 }
