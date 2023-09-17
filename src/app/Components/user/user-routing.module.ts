@@ -14,7 +14,11 @@ const routes: Routes = [
         canActivate: [IsUserGuard]
       }
     ]
-  }
+  },
+  // {
+  //   path: '**', 
+  //   component: PageNotFoundComponent
+  // }
 ]
 
 @NgModule({

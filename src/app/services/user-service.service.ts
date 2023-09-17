@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 // import { baseUrl } from 'src/environments/environment';
 
-// const baseUrl = 'api/user/';
-const baseUrl = 'https://jsonplaceholder.typicode.com/';
+const baseUrl = 'api/user/';
+// const baseUrl = 'https://jsonplaceholder.typicode.com/';
 
 @Injectable({
     providedIn: 'root'
@@ -34,37 +34,28 @@ export class UserService {
     }
 
     login(userData: any): Observable<any> {
-        return this._http.post(`${baseUrl}posts`, userData);
+        return this._http.post(`${baseUrl}login`, userData);
     }
 
     getUser(id: string): Observable<any>{
-        return this._http.get(`${baseUrl}get-user/` + id);
+        return this._http.get(`${baseUrl}get-user/` + id).pipe();
     }
 
     updateUser(id: string, userData: any){
-        return this._http.post(`${baseUrl}update/` + id, userData);
+        return this._http.put(`${baseUrl}update/` + id, userData);
     }
 
 
     addFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.get(`${baseUrl}add-friend`, {params: {
-            userId: userId,
-            friendId: friendId
-        }});         
+        return this._http.post(`${baseUrl}add-friend?userId=${userId}&friendId=${friendId}`, {});         
     }
 
     deleteFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.get(`${baseUrl}delete-friend`, {params: {
-            userId: userId,
-            friendId: friendId
-        }});     
+        return this._http.delete(`${baseUrl}delete-friend?userId=${userId}&friendId=${friendId}`, {});     
     }
 
     checkFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.get(`${baseUrl}check-friend`, {params: {
-            userId: userId,
-            friendId: friendId
-        }});     
+        return this._http.put(`${baseUrl}check-friend?userId=${userId}&friendId=${friendId}`, {});     
     }
 
     getFriends(id: string): Observable<any> {

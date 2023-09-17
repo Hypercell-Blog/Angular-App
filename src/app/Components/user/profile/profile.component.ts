@@ -7,18 +7,6 @@ import { UserService } from 'src/app/services/user-service.service';
 import { PostFormComponent } from '../post-form/post-form.component';
 
 
-
-export interface User {
-  picUrl: string | ArrayBuffer | null,
-  name: string,
-  bio: string,
-  email: string,
-  phone: string,
-  facebook: string
-}
-
-
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -29,29 +17,39 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   id!: any;                // id in routerLink
   currentUserId!: string;     // user id from local storage
+
+  // User Info
+  defaultImageSrc = '../../../../assets/images/defaultProfile.jpg';
+  friendsList: any;
+  editProfileForm: FormGroup = this._fb.group({
+    name: '',
+    bio: '',
+    email: '',
+    password: '',
+    phone: '',
+    facebook: ''
+  });
+  user!: any; 
+  reader = new FileReader();
+  imagePath!: File;
+  isFriend = false;
+  editForm = false;
+  isCuurentUser = false;
+
+
+  // Subscriptions
   private sub: any;
   private subButton: any;
   private subCheck: any;
   private subFriends: any;
   private subImage: any;
-  isFriend = false;
-  friendsList = [];
-  editForm = false;
-  editProfileForm: FormGroup = this._fb.group({
-    name: '',
-    bio: '',
-    email: '',
-    phone: '',
-    facebook: ''
-  });
-  reader = new FileReader();
-  imagrPath!: File;
-
+  
+  
+  // UI 
   screenWidth!: number;
-  user!: any;                                       // make it of type User
-
   @ViewChild('sidenav') sidenav!: MatSidenav;
   opened: boolean = true;
+
 
   constructor(private userService: UserService, 
               private route: ActivatedRoute,
@@ -63,97 +61,88 @@ export class ProfileComponent implements OnInit, OnDestroy {
     };
   }
 
-  getUser(userId: string){
-    return this.userService.getUser(userId).subscribe({
-      next: (user) => {
-        return user;
-      } 
-    });
-  }
+  // ___ FUNCTIONS ___
 
-  ngOnInit(): void {
+  getScreenWidth(){
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
     this.screenWidth = window.innerWidth;
     };
+  }
 
-    this.sub = this.route.children[0].paramMap.subscribe(params => {
-      this.id = params.get('id'); 
-      this.user = this.getUser(this.id);
-
-      this.currentUserId = this.userService.getUserId();    
-
-      if(this.currentUserId != this.id){
-        this.subCheck = this.userService.checkFriend(this.currentUserId, this.id).subscribe({
-          next: (response: boolean) => {
-            if(response == true){
-              this.isFriend = true;
-            }
-            else{
-              this.isFriend = false;
-            }
-          }
-        });
-      }
-
-      this.subFriends = this.userService.getFriends(this.currentUserId).subscribe({
-        next: (friends: any) => this.friendsList = friends
-      });
+  // Get user object from api
+  getUser(userId: string){
+    this.userService.getUser(userId).subscribe({
+      next: (user) => {
+        if(!user['pic']){
+          user.pic = this.defaultImageSrc;
+        }
+        this.user = user;
+      } 
     });
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    // this.subButton.unsubscribe();
-    // this.subCheck.unsubscribe();
-    // this.subFriends.unsubscribe();
+  // Get friends list of the current profile 
+  getFriends(id: string){
+    this.subFriends = this.userService.getFriends(id).subscribe({
+      next: (friends: any) => this.friendsList = friends
+    });
   }
 
+  // Check if the user and the current profile are friends or not
+  checkFriend(userId: string, id: string){
+    this.subCheck = this.userService.checkFriend(this.currentUserId, this.id).subscribe({
+      next: (response: boolean) => {
+        if(response == true){
+          this.isFriend = true;
+        }
+        else{
+          this.isFriend = false;
+        }
+      }
+    });
+  }
+
+  // Get all user info 
+  getProfileInfo(){
+    this.sub = this.route.children[0].paramMap.subscribe(params => {
+      this.id = params.get('id');  // get profile id from the route
+      this.getUser(this.id);
+
+      this.currentUserId = this.userService.getUserId();    // get user id from the local storage
+
+      if(this.currentUserId != this.id){
+        this.checkFriend(this.currentUserId, this.id);
+        this.isCuurentUser = false;
+      }
+      else{
+        this.isCuurentUser = true;
+      }
+
+      this.getFriends(this.id);
+
+    });
+  }
+
+  // For edit profile button
   editProfile(){
     this.editForm = true;
     this.editProfileForm.patchValue({
-      name: this.user1.name,                                     // change user1 to user
-      bio: this.user1.bio,
-      email: this.user1.email,
-      phone: this.user1.phone,
-      facebook: this.user1.facebook
+      name: this.user.name,                                     
+      bio: this.user.bio,
+      email: this.user.email,
+      password: this.user.password,
+      phone: this.user.phone,
+      facebook: this.user.facebook
     })
   }
 
-  onChange(event: any) {
-    const file = event.target.files;
-    this.imagrPath = file;
-    this.reader.readAsDataURL(file[0]);
-    this.reader.onload = (_event) => {
-      let userData = {
-        picUrl: this.reader.result,                                   //change user1 to user
-        name: this.user1.name,
-        bio: this.user1.bio,
-        email: this.user1.email,
-        phone: this.user1.phone,
-        facebook: this.user1.facebook
-      }
-      this.subImage = this.userService.updateUser(this.currentUserId, userData).subscribe({
-        next: (response) => this.user = response
-      })
-    }
-    
+  // Cancle edit profile form
+  onCancle(){
+    this.editForm = false;
   }
 
-  addFriend(){
-    this.subButton = this.userService.addFriend(this.currentUserId, this.id).subscribe({
-      next: () => this.isFriend = true,                                          // need to call getFriends() ?
-      error: () => this.isFriend = false                      
-    });
-  }
-
-  deleteFriend(){
-    this.subButton = this.userService.deleteFriend(this.currentUserId, this.id).subscribe({
-      next: () => this.isFriend = false,                                         // need to call getFriends() ?
-      error: () => this.isFriend = true
-    });
-  }
-
+  // Submit edit profile form
   onSubmit(){
     this.editForm = false;
     this.subButton = this.userService.updateUser(this.currentUserId, this.editProfileForm.value).subscribe({           
@@ -161,6 +150,66 @@ export class ProfileComponent implements OnInit, OnDestroy {
     })
   }
 
+  // For upload photo
+  onChange(event: any) {
+    // const file = event.target.files[0];
+    // const formData = new FormData();
+    // formData.append("pic", file);
+    // let userData = {
+    //   pic: formData,                                   
+    //   name: this.user.name,
+    //   bio: this.user.bio,
+    //   email: this.user.email,
+    //   password: this.user.password,      //////////////
+    //   phone: this.user.phone,
+    //   facebook: this.user.facebook
+    // }
+    // this.subImage = this.userService.updateUser(this.currentUserId, userData).subscribe({
+    //   next: (response) => this.user = response
+    // })
+    const file = event.target.files;
+    this.imagePath = file;
+    this.reader.readAsDataURL(file[0]);
+    this.reader.onload = (_event) => {
+      let userData = {
+        pic: this.reader.result,                                   
+        name: this.user.name,
+        bio: this.user.bio,
+        email: this.user.email,
+        password: this.user.password,      //////////////
+        phone: this.user.phone,
+        facebook: this.user.facebook
+      }
+      // Need an api for image upload alone
+      this.subImage = this.userService.updateUser(this.currentUserId, userData).subscribe({
+        next: (response) => this.user = response
+      })
+    }
+  }
+
+  // For add friend button
+  addFriend(){
+    this.subButton = this.userService.addFriend(this.currentUserId, this.id).subscribe({
+      next: () => {
+        this.isFriend = true;
+        this.getFriends(this.id);
+      },                                          
+      error: () => this.isFriend = false                      
+    });
+  }
+
+  // For delete friend button
+  deleteFriend(){
+    this.subButton = this.userService.deleteFriend(this.currentUserId, this.id).subscribe({
+      next: () => {
+        this.isFriend = false;
+        this.getFriends(this.id);
+      },                                         
+      error: () => this.isFriend = true
+    });
+  }
+
+  // Add post dialog
   openDialog(){
     const dialogConfig = new MatDialogConfig();
 
@@ -169,41 +218,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.matDialog.open(PostFormComponent, dialogConfig);
   }
 
-
-  //For Display
-  user1: User = {
-    picUrl: '../../../../assets/images/LeviAckerman.jpg',
-    name: 'Levi Acerman',
-    bio: 'Lorem ipsum dolor sit amet.',
-    email: 'levi_acerman@gmail.com',
-    phone: '+20 1156459200',
-    facebook: 'Gehad28',
-    // groups: ['Backend Developers', 'Frontend Developers', 'Attack On Titan Fans']
-  }
-
-  friends = [
-    {
-      id: 2,
-      name: 'Friend 1',
-      picUrl: '../../../../assets/images/img.jpg'
-    },
-    {
-      id: 3,
-      name: 'Friend 2',
-      picUrl: '../../../../assets/images/img.jpg'
-    },
-    {
-      id: 4,
-      name: 'Friend 3',
-      picUrl: '../../../../assets/images/img.jpg'
-    },
-    {
-      id: 5,
-      name: 'Friend 4',
-      picUrl: '../../../../assets/images/img.jpg'
-    }
-  ]
-  
+  // For sidenav 
   toggle(){
     this.opened = !this.opened;
     if(this.opened){
@@ -220,5 +235,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.sidenav.close();
   }
 
-  
+
+
+
+  ngOnInit(): void {
+    this.getScreenWidth();
+    this.getProfileInfo();
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+    if(this.subButton){
+      this.subButton.unsubscribe();
+    }
+    if(this.subCheck){
+      this.subCheck.unsubscribe();
+    }
+    if(this.subImage){
+      this.subImage.unsubscribe();
+    }
+    this.subFriends.unsubscribe();
+  }
 }

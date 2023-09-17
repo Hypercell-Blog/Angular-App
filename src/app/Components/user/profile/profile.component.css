@@ -12,16 +12,16 @@
     background-color: #f8f9fa;
 }
 
-.profilepic {
+.profilepic{
     position: relative;
     overflow: hidden;
 }
 
-.profilepic:hover .profilepic__content {
+.profilepic__content:hover {
     opacity: 1;
 }
 
-.profilepic:hover img {
+.profilepic:hover .profile-img {
     opacity: .8;
 }
 
@@ -30,8 +30,8 @@
     height: 200px;
     border-radius: 50%; 
     object-fit: cover;
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
 }
 
 .profilepic__content {

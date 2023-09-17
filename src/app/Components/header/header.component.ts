@@ -30,5 +30,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
+  signOut(){
+    this._userService.signOut();
+    // this.router.navigate(['login']);
+    window.location.reload();             ///////////
+  }
+
 
 }

@@ -29,8 +29,11 @@ export class LoginComponent {
   submitForm() {
     this.sub = this._userService.login(this.loginform.value).subscribe({
       next: (response: any) => {
-        this._userService.saveUserId(response.id);
-        this._router.navigate(['']);                                               
+        if(response['id'] ||response['id'] != undefined ){
+          this._userService.saveUserId(response['id']);
+          this._router.navigate(['']);     
+        }
+                                                  
       }
     });
   }
