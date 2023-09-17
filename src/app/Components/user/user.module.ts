@@ -18,7 +18,6 @@ import { PostRoutingModule } from '../post/post-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { HeaderComponent } from '../header/header.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
@@ -44,7 +43,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     MatDividerModule,
     MatGridListModule,
-    HeaderComponent,
     MatDialogModule
   ],
   exports: [

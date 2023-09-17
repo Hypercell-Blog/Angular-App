@@ -1,3 +1,8 @@
+.router-outlet{
+    height: 100%;
+    min-height: 100%;
+}
+
 .footer{
     position: sticky;
 }

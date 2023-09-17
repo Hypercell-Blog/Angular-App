@@ -9,8 +9,6 @@ import { UserService } from 'src/app/services/user-service.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  standalone: true,
-  imports: [RouterModule, MatIconModule, MatButtonModule, CommonModule]
 })
 export class HeaderComponent implements OnInit {
   userId = '';

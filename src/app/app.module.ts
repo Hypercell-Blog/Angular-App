@@ -25,7 +25,7 @@ import { PostModule } from './Components/post/post.module';
 @NgModule({
   declarations: [
     AppComponent,
-    // HeaderComponent,
+    HeaderComponent,
     FooterComponent,
     AboutComponent,
     ContactComponent,
@@ -47,8 +47,7 @@ import { PostModule } from './Components/post/post.module';
     MatButtonModule,
     UserModule,
     HttpClientModule,
-    PostModule,
-    HeaderComponent
+    PostModule
 
   ],
   providers: [],

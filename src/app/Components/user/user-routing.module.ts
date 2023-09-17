@@ -11,7 +11,10 @@ const routes: Routes = [
       {
         path: 'profile/:id',
         component: ProfileComponent,
-        canActivate: [IsUserGuard]
+        canActivate: [IsUserGuard],
+        data: {
+          animation: 'ProfilePage'
+        }
       }
     ]
   },

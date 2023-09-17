@@ -6,12 +6,19 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PostDetailsComponent } from './Components/post/post-details/post-details.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: HomeComponent,
+    data: {
+      animation: 'HompePage'
+    }
   },
   {
     path: 'about',
@@ -35,17 +42,11 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
-    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
-  },
-  {
-    path: 'create-post',
-    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
-  },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-}
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule),
+    data: {
+      animation: 'UserProfile'
+    }
+  }
 ];
 
 @NgModule({
