@@ -2,7 +2,7 @@ import { animate, animateChild, group, query, style, transition, trigger } from 
 
 export const slideInAnimation =
   trigger('routeAnimations', [
-    transition('HomePage <=> UserProfile, UserProfile <=> ProfilePage', [
+    transition('HomePage <=> UserProfile, UserProfile <=> ProfilePage, Login <=> Register', [
         style({ position: 'relative', overflow: 'hidden'}),
         query(':enter, :leave', [
           style({
