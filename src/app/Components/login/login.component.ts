@@ -39,9 +39,11 @@ export class LoginComponent {
           this.message = null;
           this._router.navigate(['']);
         }
+        else if(response['msg']){
+          this.message = response['msg'];
+        }
 
-      },
-      error: error => this.message = error
+      }
 
     });
   }
