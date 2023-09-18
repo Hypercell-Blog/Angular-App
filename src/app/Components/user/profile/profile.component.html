@@ -1,7 +1,7 @@
 
 
 <mat-sidenav-container class="example-container" (backdropClick)="close()">
-    <mat-sidenav #sidenav class="example-sidenav" (keydown.escape)="close()" disableClose [opened]="true" mode="side">
+    <mat-sidenav #sidenav class="example-sidenav" (keydown.escape)="sidenav.toggle()" disableClose [opened]="true" mode="side">
         <div class="profilepic">
             <img src="{{user.pic}}" [ngClass]="{'m-3': true, 'profile-img': isCuurentUser}">
             <div *ngIf="isCuurentUser" class="profilepic__content">
@@ -98,7 +98,7 @@
                 </div>
             </mat-tab>
             <mat-tab label="Friends">
-                <div *ngIf="friendsList.length > 0" class="container-sm border rounded m-2 mx-0">
+                <div  class="container-sm border rounded m-2 mx-0">
                     <div class="row text-left d-flex justify-content-start m-3">
                         <div *ngFor="let friend of friendsList" class="col-md-6 col-sm-8">
                             <a [routerLink]="['profile', friend.id]" class="link-dark friend-card m-1">

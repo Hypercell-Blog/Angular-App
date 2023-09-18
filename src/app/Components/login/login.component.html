@@ -17,7 +17,7 @@
       <div *ngIf="getError('password', 'required')" class="text-danger py-3">This field is required</div>
       <div class="button">
         <button mat-raised-button color="primary">Login</button>
-        <p>Don't have an account?<a routerLink="/register">Register</a></p>
+        <p>Don't have an account?<a [routerLink]="['/register']">Register</a></p>
       </div>
     </form>
 

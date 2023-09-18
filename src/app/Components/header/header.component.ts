@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { IsUserService } from 'src/app/services/is-user.service';
 import { UserService } from 'src/app/services/user-service.service';
 
 @Component({
@@ -12,12 +12,24 @@ import { UserService } from 'src/app/services/user-service.service';
 })
 export class HeaderComponent implements OnInit {
   userId = '';
+  isUser = false;
   
-
-  constructor(private _userService: UserService, private router: Router){}
+  constructor(private _userService: UserService, private router: Router,
+              private _isUser: IsUserService){
+  }
 
   ngOnInit(): void {
     this.userId = this._userService.getUserId();
+    this._isUser.subject.subscribe({
+      next: v => {
+        if(v){
+          this.isUser = true;
+        }
+        else{
+          this.isUser = false;
+        }
+      }
+    })
   }
 
   login(){
@@ -30,9 +42,11 @@ export class HeaderComponent implements OnInit {
 
   signOut(){
     this._userService.signOut();
-    // this.router.navigate(['login']);
-    window.location.reload();             ///////////
+    this._isUser.subject.next(false);
+    this.router.navigate(['']);
   }
+
+  
 
 
 }

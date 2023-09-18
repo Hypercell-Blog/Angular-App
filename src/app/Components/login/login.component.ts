@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IsUserService } from 'src/app/services/is-user.service';
 import { UserService } from 'src/app/services/user-service.service';
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
   constructor(
     private _login: FormBuilder,
     private _userService: UserService,
-    private _router: Router
+    private _router: Router,
+    private _isUser: IsUserService
   ) {
     this.loginform = this._login.group({
       email: [null, [Validators.required]],
@@ -31,6 +33,7 @@ export class LoginComponent {
       next: (response: any) => {
         if(response['id'] ||response['id'] != undefined ){
           this._userService.saveUserId(response['id']);
+          this._isUser.subject.next(true);
           this._router.navigate(['']);     
         }
                                                   

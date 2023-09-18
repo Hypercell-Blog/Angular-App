@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // ___ FUNCTIONS ___
 
+  //Breakpoint obs
   getScreenWidth(){
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
@@ -74,7 +75,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   getUser(userId: string){
     this.userService.getUser(userId).subscribe({
       next: (user) => {
-        if(!user['pic']){
+        if(!user['pic'] || user['pic'] == undefined){
           user.pic = this.defaultImageSrc;
         }
         this.user = user;
@@ -91,7 +92,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // Check if the user and the current profile are friends or not
   checkFriend(userId: string, id: string){
-    this.subCheck = this.userService.checkFriend(this.currentUserId, this.id).subscribe({
+    this.subCheck = this.userService.checkFriend(userId, id).subscribe({
       next: (response: boolean) => {
         if(response == true){
           this.isFriend = true;
@@ -241,6 +242,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getScreenWidth();
     this.getProfileInfo();
+    console.log(this.isFriend)
   }
 
   ngOnDestroy(): void {

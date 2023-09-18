@@ -47,7 +47,10 @@ export class UserService {
 
 
     addFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.post(`${baseUrl}add-friend?userId=${userId}&friendId=${friendId}`, {});         
+        return this._http.post(`${baseUrl}add-friend`, {}, {params: {
+            userId: userId,
+            friendId: friendId
+        }});         
     }
 
     deleteFriend(userId: string, friendId: string): Observable<any>{
@@ -55,7 +58,10 @@ export class UserService {
     }
 
     checkFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.put(`${baseUrl}check-friend?userId=${userId}&friendId=${friendId}`, {});     
+        return this._http.put(`${baseUrl}check-friend`, {}, {params: {
+            userId: userId,
+            friendId: friendId
+        }});     
     }
 
     getFriends(id: string): Observable<any> {
