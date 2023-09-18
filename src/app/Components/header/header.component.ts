@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this._userService.getUserId();
+    console.log(this.userId)
     this._isUser.subject.subscribe({
       next: v => {
         if(v){
