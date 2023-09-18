@@ -15,15 +15,14 @@ export class HeaderComponent implements OnInit {
   isUser = false;
   
   constructor(private _userService: UserService, private router: Router,
-              private _isUser: IsUserService){
-  }
+              private _isUser: IsUserService){}
 
   ngOnInit(): void {
     this.userId = this._userService.getUserId();
-    console.log(this.userId)
     this._isUser.subject.subscribe({
       next: v => {
         if(v){
+          this.userId = this._userService.getUserId();
           this.isUser = true;
         }
         else{

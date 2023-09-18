@@ -1,6 +1,6 @@
 
 
-<mat-sidenav-container class="example-container" (backdropClick)="close()">
+<mat-sidenav-container class="example-container" (backdropClick)="sidenav.toggle()">
     <mat-sidenav #sidenav class="example-sidenav" (keydown.escape)="sidenav.toggle()" disableClose [opened]="true" mode="side">
         <div class="profilepic">
             <img src="{{user?.pic}}" [ngClass]="{'m-3': true, 'profile-img': isCuurentUser}">
@@ -82,7 +82,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <button mat-icon-button [ngClass]="{'button':true,'open':opened}" (click)="toggle()" class="example-icon toggle-button" aria-label="Example icon button with a menu icon">
+        <button mat-icon-button [ngClass]="{'button':true,'open':opened}" (click)="sidenav.toggle()" class="example-icon toggle-button" aria-label="Example icon button with a menu icon">
             <mat-icon color="primary">menu</mat-icon>
         </button>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="mt-2 mx-2" dynamicHeight>
@@ -92,7 +92,7 @@
                         <div class="mt-3 mx-2" *ngIf="isCuurentUser">
                             <button mat-raised-button color="primary"  (click)="openDialog()">Add Post</button>
                         </div>
-                        <app-search-form></app-search-form>
+                        <!-- <app-search-form></app-search-form> -->
                     </div>
                     <app-post-list [searchFlag]="false"></app-post-list>
                 </div>

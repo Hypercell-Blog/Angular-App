@@ -6,5 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class IsUserService {
   subject = new BehaviorSubject(false);
-  constructor() { }
+  constructor() {
+    if(localStorage.getItem('id')){
+      this.subject.next(true);
+    }
+  }
 }

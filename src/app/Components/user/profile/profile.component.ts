@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user!: any; 
   reader = new FileReader();
   imagePath!: File;
-  isFriend = false;
+  isFriend :boolean = false;
   editForm = false;
   isCuurentUser = false;
 
@@ -94,12 +94,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   checkFriend(userId: string, id: string){
     this.subCheck = this.userService.checkFriend(userId, id).subscribe({
       next: (response: boolean) => {
-        if(response == true){
-          this.isFriend = true;
-        }
-        else{
-          this.isFriend = false;
-        }
+        this.isFriend = response;
+        console.log(this.isFriend)
       }
     });
   }
@@ -146,7 +142,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   // Submit edit profile form
   onSubmit(){
     this.editForm = false;
-    this.subButton = this.userService.updateUser(this.currentUserId, this.editProfileForm.value).subscribe({           
+    const updated = Object.assign({}, this.editProfileForm.value, {pic: this.user.pic});
+    this.subButton = this.userService.updateUser(this.currentUserId, updated).subscribe({           
       next: (resonse: any) => this.user = resonse
     })
   }
@@ -194,8 +191,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next: () => {
         this.isFriend = true;
         this.getFriends(this.id);
-      },                                          
-      error: () => this.isFriend = false                      
+      }                  
     });
   }
 
@@ -205,8 +201,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next: () => {
         this.isFriend = false;
         this.getFriends(this.id);
-      },                                         
-      error: () => this.isFriend = true
+      }
     });
   }
 
@@ -231,10 +226,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return this.opened;
   }
   
-  close() {
-    this.opened = false;
-    this.sidenav.close();
-  }
+  // close() {
+  //   this.opened = false;
+  //   this.sidenav.close();
+  // }
 
 
 
@@ -242,7 +237,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getScreenWidth();
     this.getProfileInfo();
-    console.log(this.isFriend)
   }
 
   ngOnDestroy(): void {
