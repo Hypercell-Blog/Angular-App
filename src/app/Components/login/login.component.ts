@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user-service.service';
 export class LoginComponent {
   private sub: any;
   loginform!: FormGroup;
+  message = null;
 
   constructor(
     private _login: FormBuilder,
@@ -29,12 +30,15 @@ export class LoginComponent {
   submitForm() {
     this.sub = this._userService.login(this.loginform.value).subscribe({
       next: (response: any) => {
-        if(response['id'] ||response['id'] != undefined ){
+        if (response['id'] || response['id'] != undefined) {
           this._userService.saveUserId(response['id']);
-          this._router.navigate(['']);     
+          this.message = null;
+          this._router.navigate(['']);
         }
-                                                  
-      }
+
+      },
+      error: error => this.message = error
+
     });
   }
 
