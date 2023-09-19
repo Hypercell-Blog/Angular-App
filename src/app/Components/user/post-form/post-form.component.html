@@ -1,22 +1,23 @@
-
 <div class="container mt-5">
   <h1>Create Post</h1>
   <form [formGroup]="createpostform" (ngSubmit)="submitForm()" class="container">
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Title</label>
-      <input formControlName="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter post title">
+      <input formControlName="title" type="text" class="form-control" id="exampleFormControlInput1"
+        placeholder="Enter post title">
     </div>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Description</label>
-      <input formControlName="description" type="text" class="form-control" id="exampleFormControlInput2" rows="2" placeholder="Enter your discription">
+      <textarea formControlName="description" class="form-control" id="exampleFormControlInput2" rows="3"
+        placeholder="Enter your discription"></textarea>
     </div>
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">Image Url</label>
-      <input formControlName="imageurl" type="url" class="form-control" id="exampleFormControlTextarea1" placeholder="Enter iamage url">
+      <input formControlName="imageurl" type="file" class="form-control" id="exampleFormControlTextarea1"
+        placeholder="Enter iamage url">
     </div>
     <div class="mb-4">
       <button mat-raised-button color="primary" type="submit">Create</button>
     </div>
   </form>
 </div>
-
