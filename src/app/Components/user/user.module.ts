@@ -46,7 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDialogModule
   ],
   exports: [
-    ProfileComponent
+    ProfileComponent,
+    PostFormComponent
   ]
 })
 export class UserModule { }
