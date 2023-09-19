@@ -3,7 +3,7 @@
 <mat-sidenav-container class="example-container" (backdropClick)="sidenav.toggle()">
     <mat-sidenav #sidenav class="example-sidenav" (keydown.escape)="sidenav.toggle()" disableClose [opened]="true" mode="side">
         <div class="profilepic">
-            <img src="{{user?.pic}}" [ngClass]="{'m-3': true, 'profile-img': isCuurentUser}">
+            <img [src]="user?.pic" [ngClass]="{'m-3': true, 'profile-img': isCuurentUser}">
             <div *ngIf="isCuurentUser" class="profilepic__content">
                 <label for="formFile" class="profilepic__text d-flex flex-column">
                     <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
@@ -29,7 +29,7 @@
                 <input type="password" class="form-control" formControlName="password" placeholder="Password" />
               </div>
             <div class="mb-3">
-                <input type="text" class="form-control" formControlName="facebook" placeholder="Facebook Username">
+                <input type="text" class="form-control" formControlName="facebookUsername" placeholder="Facebook Username">
             </div>
             <button type="submit" mat-raised-button color="primary" class="mt-2">Submit</button>
             <button type="button" mat-raised-button class="mt-2 mx-2" (click)="onCancle()">Cancle</button>
@@ -57,10 +57,10 @@
                             <h3 class="mx-1">{{user?.email}}</h3>
                         </a>
                     </div>
-                    <div *ngIf="user?.facebook" class="d-flex">
+                    <div *ngIf="user?.facebookUsername" class="d-flex">
                         <mat-icon aria-hidden="false" aria-label="Example facebook icon" fontIcon="facebook"></mat-icon>
-                        <a href="{{'https://www.facebook.com/' + user?.facebook + '/'}}" target="_blank" class="link-dark">
-                            <h3 class="mx-1">{{user?.facebook}}</h3>
+                        <a href="{{'https://www.facebook.com/' + user?.facebookUsername + '/'}}" target="_blank" class="link-dark">
+                            <h3 class="mx-1">{{user?.facebookUsername}}</h3>
                         </a>
                     </div>
                 </mat-card-content>

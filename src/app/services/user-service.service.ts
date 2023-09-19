@@ -1,10 +1,8 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-// import { baseUrl } from 'src/environments/environment';
 
 const baseUrl = 'api/user/';
-// const baseUrl = 'https://jsonplaceholder.typicode.com/';
 
 @Injectable({
     providedIn: 'root'
@@ -38,11 +36,17 @@ export class UserService {
     }
 
     getUser(id: string): Observable<any>{
-        return this._http.get(`${baseUrl}get-user/` + id).pipe();
+        return this._http.get(`${baseUrl}get-user/` + id);
     }
 
     updateUser(id: string, userData: any){
-        return this._http.put(`${baseUrl}update/` + id, userData);
+        return this._http.put(`${baseUrl}update-user/` + id, userData);
+    }
+
+    uploadImage(id: string, image: any) {
+        return this._http.post(`${baseUrl}upload-image` + id, {
+            image: image
+        });
     }
 
 

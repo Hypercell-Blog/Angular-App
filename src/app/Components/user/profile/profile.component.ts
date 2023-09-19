@@ -5,6 +5,8 @@ import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import { ActivatedRoute, RouteReuseStrategy, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
 import { PostFormComponent } from '../post-form/post-form.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     email: '',
     password: '',
     phone: '',
-    facebook: ''
+    facebookUsername: ''
   });
   user!: any; 
   reader = new FileReader();
@@ -38,11 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   // Subscriptions
-  private sub: any;
-  private subButton: any;
-  private subCheck: any;
-  private subFriends: any;
-  private subImage: any;
+  subs: Subscription[] = [];
   
   
   // UI 
@@ -55,7 +53,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private matDialog: MatDialog,
               private _fb: FormBuilder,
-              private routerReuse: RouteReuseStrategy){
+              private routerReuse: RouteReuseStrategy,
+              private _sanitizer: DomSanitizer){
     this.routerReuse.shouldReuseRoute = function () {
       return false;
     };
@@ -79,30 +78,42 @@ export class ProfileComponent implements OnInit, OnDestroy {
           user.pic = this.defaultImageSrc;
         }
         this.user = user;
+        if(user['pic'] != this.defaultImageSrc){
+          this.user.pic = this._sanitizer.bypassSecurityTrustResourceUrl(user['pic']) as string;
+        }
       } 
     });
   }
 
   // Get friends list of the current profile 
   getFriends(id: string){
-    this.subFriends = this.userService.getFriends(id).subscribe({
-      next: (friends: any) => this.friendsList = friends
+    const subFriends = this.userService.getFriends(id).subscribe({
+      next: (friends: any) => {
+        this.friendsList = friends;
+        this.friendsList.forEach((ele: any) => {
+          if(ele['pic'] != this.defaultImageSrc){
+            ele['pic'] = this._sanitizer.bypassSecurityTrustResourceUrl(ele['pic']) as string;
+          }
+        });
+      }
     });
+    this.subs.push(subFriends);
   }
 
   // Check if the user and the current profile are friends or not
   checkFriend(userId: string, id: string){
-    this.subCheck = this.userService.checkFriend(userId, id).subscribe({
+    const subCheck = this.userService.checkFriend(userId, id).subscribe({
       next: (response: boolean) => {
         this.isFriend = response;
-        console.log(this.isFriend)
       }
     });
+    this.subs.push(subCheck);
   }
+
 
   // Get all user info 
   getProfileInfo(){
-    this.sub = this.route.children[0].paramMap.subscribe(params => {
+    const sub = this.route.children[0].paramMap.subscribe(params => {
       this.id = params.get('id');  // get profile id from the route
       this.getUser(this.id);
 
@@ -119,6 +130,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.getFriends(this.id);
 
     });
+
+    this.subs.push(sub);
   }
 
   // For edit profile button
@@ -130,7 +143,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       email: this.user.email,
       password: this.user.password,
       phone: this.user.phone,
-      facebook: this.user.facebook
+      facebookUsername: this.user.facebookUsername
     })
   }
 
@@ -143,66 +156,51 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onSubmit(){
     this.editForm = false;
     const updated = Object.assign({}, this.editProfileForm.value, {pic: this.user.pic});
-    this.subButton = this.userService.updateUser(this.currentUserId, updated).subscribe({           
+    const subButton = this.userService.updateUser(this.currentUserId, updated).subscribe({           
       next: (resonse: any) => this.user = resonse
-    })
+    });
+
+    this.subs.push(subButton);
   }
 
   // For upload photo
   onChange(event: any) {
-    // const file = event.target.files[0];
-    // const formData = new FormData();
-    // formData.append("pic", file);
-    // let userData = {
-    //   pic: formData,                                   
-    //   name: this.user.name,
-    //   bio: this.user.bio,
-    //   email: this.user.email,
-    //   password: this.user.password,      //////////////
-    //   phone: this.user.phone,
-    //   facebook: this.user.facebook
-    // }
-    // this.subImage = this.userService.updateUser(this.currentUserId, userData).subscribe({
-    //   next: (response) => this.user = response
-    // })
     const file = event.target.files;
     this.imagePath = file;
     this.reader.readAsDataURL(file[0]);
     this.reader.onload = (_event) => {
-      let userData = {
-        pic: this.reader.result,                                   
-        name: this.user.name,
-        bio: this.user.bio,
-        email: this.user.email,
-        password: this.user.password,      //////////////
-        phone: this.user.phone,
-        facebook: this.user.facebook
-      }
-      // Need an api for image upload alone
-      this.subImage = this.userService.updateUser(this.currentUserId, userData).subscribe({
-        next: (response) => this.user = response
-      })
+      const subImage = this.userService.uploadImage(this.currentUserId, this.reader.result).subscribe({
+        next: (response: any) => {
+          this.user.pic = this._sanitizer.bypassSecurityTrustResourceUrl(response['image']) as string;
+        }
+      });
+
+      this.subs.push(subImage);
     }
   }
 
   // For add friend button
   addFriend(){
-    this.subButton = this.userService.addFriend(this.currentUserId, this.id).subscribe({
+    const subButton = this.userService.addFriend(this.currentUserId, this.id).subscribe({
       next: () => {
         this.isFriend = true;
         this.getFriends(this.id);
       }                  
     });
+
+    this.subs.push(subButton);
   }
 
   // For delete friend button
   deleteFriend(){
-    this.subButton = this.userService.deleteFriend(this.currentUserId, this.id).subscribe({
+    const subButton = this.userService.deleteFriend(this.currentUserId, this.id).subscribe({
       next: () => {
         this.isFriend = false;
         this.getFriends(this.id);
       }
     });
+
+    this.subs.push(subButton);
   }
 
   // Add post dialog
@@ -240,16 +238,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    if(this.subButton){
-      this.subButton.unsubscribe();
-    }
-    if(this.subCheck){
-      this.subCheck.unsubscribe();
-    }
-    if(this.subImage){
-      this.subImage.unsubscribe();
-    }
-    this.subFriends.unsubscribe();
+    this.subs.forEach(ele => {
+      if(ele){
+        ele.unsubscribe();
+      }
+    });
   }
 }
