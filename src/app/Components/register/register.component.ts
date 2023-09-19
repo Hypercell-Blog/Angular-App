@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user-service.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnDestroy,OnInit {
+export class RegisterComponent implements OnDestroy {
   private subs: Subscription[] = [];
   registerform!: FormGroup;
   defaultImageSrc = '../../../../assets/images/defaultProfile.jpg';
@@ -73,10 +73,6 @@ export class RegisterComponent implements OnDestroy,OnInit {
       error: (error: any) => console.log(error),
     });
     this.subs.push(sub);
-  }
-
-  ngOnInit(): void {
-      // this.userService.signOut();
   }
 
   ngOnDestroy(): void {

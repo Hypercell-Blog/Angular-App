@@ -34,8 +34,7 @@ export class LoginComponent {
       next: (response: any) => {
         if (response['id'] || response['id'] != undefined) {
           this._userService.saveUserId(response['id']);
-          this._isUser.subject.next(true);
-          this._router.navigate(['']);     
+          this._isUser.subject.next(true);  
           this.message = null;
           this._router.navigate(['']);
         }

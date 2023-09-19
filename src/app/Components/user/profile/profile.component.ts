@@ -223,14 +223,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
     return this.opened;
   }
-  
-  // close() {
-  //   this.opened = false;
-  //   this.sidenav.close();
-  // }
-
-
-
 
   ngOnInit(): void {
     this.getScreenWidth();
