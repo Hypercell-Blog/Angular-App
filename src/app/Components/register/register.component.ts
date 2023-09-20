@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user-service.service';
 export class RegisterComponent implements OnDestroy {
   private subs: Subscription[] = [];
   registerform!: FormGroup;
+  message = null;
   defaultImageSrc = '../../../../assets/images/defaultProfile.jpg';
 
   constructor(
@@ -25,8 +26,8 @@ export class RegisterComponent implements OnDestroy {
       {
         name: [null, [Validators.required]],
         email: [null, [Validators.required]],
-        password: [null, [Validators.minLength(6)]],
-        Confirmpassword: [null, [Validators.required]],
+        password: [null, [Validators.required, Validators.minLength(8)]],
+        Confirmpassword: [null, [Validators.required]]
       },
       {
         validator: this.confirmPasswordMatch('password', 'Confirmpassword'),
@@ -67,7 +68,12 @@ export class RegisterComponent implements OnDestroy {
               this.userService.saveUserId(response['id']);
               this._isUser.subject.next(true);
               this._router.navigate(['']);
+              this.message = null;
+              if (response['msg']) {
+                this.message = response['msg'];
+              }
             },
+
           });
       },
       error: (error: any) => console.log(error),
