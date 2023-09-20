@@ -24,6 +24,7 @@ import { UserRoutingModule } from './Components/user/user-routing.module';
 import { PostModule } from './Components/post/post.module';
 import { PostRoutingModule } from './Components/post/post-routing.module';
 import { SearchFormComponent } from './Components/search-form/search-form.component';
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SearchFormComponent } from './Components/search-form/search-form.compon
     UserRoutingModule,
     HttpClientModule,
     PostModule,
-    PostRoutingModule
+    PostRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

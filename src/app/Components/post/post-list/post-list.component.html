@@ -18,30 +18,30 @@
     style="width: 500px"
     *ngFor="let post of postList"
   >
-    <mat-card class="example-card" *ngIf="!post.shared_post">
+    <!-- <mat-card class="example-card" *ngIf="!post.shared_post">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <img mat-card-image [src]="'data:image/png;base64,' + post.user_image"alt="user img" />
+          <img mat-card-image [src]="'data:image/png;base64,' + post.user.image"alt="user img" />
 
         </div>
-        <mat-card-title>{{ post.user_name }}</mat-card-title>
-        <mat-card-subtitle>{{ post.post_date }}</mat-card-subtitle>
+        <mat-card-title>{{ post.user.name }}</mat-card-title>
+        <mat-card-subtitle>{{ post.createAt }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content class="my-2">
-        <p>{{ post.post_desc }}</p>
+        <p>{{ post.content }}</p>
       </mat-card-content>
       <mat-card class="example-card m-4">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
-          <img mat-card-image [src]="'data:image/png;base64,' + post.shared_post.user_image" alt="user img" />
+          <img mat-card-image [src]="'data:image/png;base64,' + post.sharedPost.user.image" alt="user img" />
           </div>
           <mat-card-title>{{ post.shared_post }}</mat-card-title>
           <mat-card-subtitle>Hello there</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="'data:image/png;base64,' + post.post_image"alt="user img" />
+        <img mat-card-image [src]="'data:image/png;base64,' + post.image"alt="user img" />
         <mat-card-content class="my-2">
           <p>
-            {{ post.shared_post }}
+            {{ post.sharedPost.content }}
           </p>
           <h3>Posted 22/8/202</h3>
         </mat-card-content>
@@ -73,45 +73,9 @@
           <mat-icon>share</mat-icon>
         </button>
       </mat-card-actions>
-    </mat-card>
+    </mat-card> -->
 
-    <mat-card class="example-card" *ngIf="post.shared_post">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image">
-          <img mat-card-image [src]="'data:image/png;base64,' + post.user_image"alt="user img" />
-        </div>
-        <mat-card-title>{{ post.user_name }}</mat-card-title>
-        <mat-card-subtitle>{{ post.post_date }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="post.post_image" alt="user img" />
-      <mat-card-content class="my-2">
-        <p>
-          {{ post.post_desc }}
-        </p>
-      </mat-card-content>
-      <mat-card-actions class="d-flex justify-content-around">
-        <span>10k</span>
-        <button mat-icon-button color="warn" (click)="onLoveClick()">
-          <mat-icon *ngIf="!isLoved">favorite_border</mat-icon>
-          <mat-icon *ngIf="isLoved">favorite</mat-icon>
-        </button>
-        <span>12k</span>
-        <button mat-icon-button color="primary" (click)="onLikeClick()">
-          <mat-icon>thumb_up</mat-icon>
-        </button>
-        <span>5</span>
-        <button mat-icon-button color="primary">
-          <mat-icon>share</mat-icon>
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          [routerLink]="['post-details']"
-        >
-          View Post
-        </button>
-      </mat-card-actions>
-    </mat-card>
+   <app-post-card [post]="post"></app-post-card>
   </div>
 </div>
 <mat-paginator

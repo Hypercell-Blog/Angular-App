@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService } from '../../../services/post-service.service';
 import { FormGroup, FormControl } from "@angular/forms"
 
 @Component({
@@ -13,6 +12,7 @@ export class PostListComponent implements OnInit {
   isLoved: boolean = false;
   isLike: boolean = false;
   @Input() searchFlag: boolean = true;
+  @Input() postList: any=[];
 
   items =[1,2,3,4]
   posts = []
@@ -33,18 +33,10 @@ export class PostListComponent implements OnInit {
 
   }
 
+
   onSearchPost() {
-    // this._api.searchPost(this.postSearchForm.value).subscribe({
-    //   next: (res) => console.log(res)
-    // })
-  }
-  onLoveClick() {
-    this.isLoved = !this.isLoved
-  }
-  onLikeClick() {
-    this.isLike = !this.isLike
   }
 
-  @Input() postList:any;
+
 }
 

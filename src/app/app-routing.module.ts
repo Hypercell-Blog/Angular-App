@@ -29,7 +29,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "post-details",
+    path: "post-details/:id",
     component: PostDetailsComponent,
   },
   {

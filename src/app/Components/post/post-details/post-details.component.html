@@ -4,23 +4,20 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" style="width: 100px; height: 100px" ></div>
         <div class="d-flex justify-content-center flex-column mx-4" >
-          <mat-card-title style="font-size: 25px;">Maro</mat-card-title>
-          <mat-card-subtitle class="text-primary">22/8/2022</mat-card-subtitle>
+          <mat-card-title style="font-size: 25px;">{{post.user.name}}</mat-card-title>
+          <mat-card-subtitle class="text-primary">{{post.createAt}}</mat-card-subtitle>
         </div>
       </mat-card-header>
-       <h3 style="font-size: 22px; font-weight: 500;" class="mx-5">Posted Title</h3>
+       <h3 style="font-size: 22px; font-weight: 500;" class="mx-5">{{post.title}}</h3>
 
       <img
         mat-card-image
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        [src]="convertImage(post.user.pic)"
         alt="user img"
       />
       <mat-card-content class="my-5" style="font-size: 22px; line-height:1.5">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
-          pariatur non quisquam reprehenderit architecto, quos velit, cupiditate
-          impedit itaque et eum nulla blanditiis nesciunt sit dignissimos vitae
-          maiores iste ipsum!
+          {{post.content}}
         </p>
       </mat-card-content>
     </mat-card>
@@ -32,16 +29,35 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" style="width: 80px; height: 80px" ></div>
         <div class="d-flex justify-content-center flex-column mx-4" >
-          <mat-card-title style="font-size: 25px;">Maro</mat-card-title>
-          <mat-card-subtitle class="text-primary">22/8/2022</mat-card-subtitle>
+          <mat-card-title style="font-size: 25px;">{{comment.user.name}}</mat-card-title>
+          <mat-card-subtitle class="text-primary">{{comment.commentDate}}</mat-card-subtitle>
         </div>
       </mat-card-header>
       <mat-card-content class="my-3" style="font-size: 22px; line-height:1.5">
         <p>
-          wow this is beautiful!
+          {{comment.content}}
         </p>
       </mat-card-content>
     </mat-card>
     </div>
   </div>
+
+
+
+
+
+
+<div class=" col-md-8 col-sm-12 mt-5 d-flex align-items-center" style="width:1000px" >
+    <mat-form-field class="example-user-input" class=" mx-3" style="min-width:600px;height: 120px;">
+  <mat-label>write comment</mat-label>
+  <input matInput [formControl]="message" placeholder="message...">
+</mat-form-field>
+<button mat-raised-button style="min-width:100px;height: 100px; border-radius: 50%;"
+  [matTooltip]="message.value || ''"
+  aria-label="Button that displays a tooltip with a custom message">
+  send
+</button>
+  </div>
+
+
 </div>

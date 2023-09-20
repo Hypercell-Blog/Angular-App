@@ -1,59 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Ipost } from 'src/app/models/ipost';
+import { PostService } from 'src/app/services/post.service';
 // import {MatGridListModule} from '@angular/material/grid-list';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+export class HomeComponent implements OnInit {
 
-export class HomeComponent {
   postList: any = [
     {
-      post_id: 1,
-      post_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
-      post_title: "Example Post 1",
-      post_desc: "This is an example post.",
-      post_date: "2023-09-13",
-      shared_post: {
-        _reacts: {
-          love: {
-            users: [
-              {
-                user_name: "user3",
-                user_image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD...",
-              },
-            ],
-          },
-          like: {
-            users: [
-              {
-                user_name: "user4",
-                user_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
-              },
-            ],
-          },
-        },
+      id: 1,
+      title: "Post 1",
+      content: "This is the first post",
+      image: "image1.jpg",
+      user: {
+        id: 1,
+        name: "user1",
+        image: "userImage1.jpg"
       },
-      user_name: "user1",
-      user_image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD...",
-      post_reacts: {
-        love: {
-          users: [
-            {
-              user_name: "user5",
-              user_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
-            },
-          ],
-        },
-        like: {
-          users: [
-            {
-              user_name: "user6",
-              user_image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD...",
-            },
-          ],
-        },
+      createdAt: "20/10/2023",
+      numberOfReact: 10,
+      numberOfComment: 5,
+      isReact: 1,
+      privacy: 0,
+    },
+    {
+      id: 2,
+      title: "Post 2",
+      content: "This is the second post",
+      image: "image2.jpg",
+      user: {
+        id: 2,
+        name: "user2",
+        image: "userImage2.jpg"
       },
+      createdAt: "02/01/2023",
+      numberOfReact: 5,
+      numberOfComment: 2,
+      isReact: 2,
+      privacy: 1,
+    },
+    {
+      id: 3,
+      title: "Post 3",
+      content: "This is the third post",
+      user: {
+        id: 1,
+        image: "userImage3.jpg"
+      },
+      createdAt: "06/09/2023",
+      numberOfReact: 15,
+      numberOfComment: 8,
+      isReact: 0,
+      sharedPost: {
+        id: 2,
+        title: "Shared Post",
+        content: "This is a shared post",
+        user: {
+          id: 3,
+          name: "user3",
+          image: "userImage3.jpg"
+
+        },
+        createdAt: new Date(),
+        numberOfReact: 3,
+        numberOfComment: 1,
+        isReact: 1,
+        privacy: 0,
+      },
+      privacy: 2,
     },
   ];
   slides = [
@@ -73,5 +90,22 @@ export class HomeComponent {
         "https://images.unsplash.com/photo-1551410224-699683e15636?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80"
     }
   ]
+  constructor(private APIService: PostService) {
+
+  }
+  getPosts() {
+    this.APIService.getAllPosts(2021).subscribe({
+      next: (postList: Ipost[]) => {
+        this.postList = postList
+        console.log("postlist1",postList)
+      }
+    })
+
+  }
+
+  ngOnInit(): void {
+    this.getPosts();
+  }
+
 
 }
