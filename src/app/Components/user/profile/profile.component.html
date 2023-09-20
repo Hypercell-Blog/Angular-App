@@ -100,11 +100,12 @@
             <mat-tab label="Friends">
                 <div  class="container-sm border rounded m-2 mx-0">
                     <div class="row text-left d-flex justify-content-start m-3">
+                        <p class="text-center" *ngIf="friendsList.length == 0">No friends yet.</p>
                         <div *ngFor="let friend of friendsList" class="col-md-6 col-sm-8">
                             <a [routerLink]="['profile', friend.id]" class="link-dark friend-card m-1">
                                 <mat-card>
                                     <mat-card-content class="d-flex flex-sm-row flex-column">
-                                        <img src="{{friend.pic}}" class="friend-img">
+                                        <img [src]="friend.pic" class="friend-img">
                                         <h3 class="mt-auto mb-auto mx-2">{{friend.name}}</h3>
                                     </mat-card-content>
                                 </mat-card>

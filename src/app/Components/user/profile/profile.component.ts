@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav'; 
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy,AfterViewInit {
 
   id!: any;                // id in routerLink
   currentUserId!: string;     // user id from local storage
@@ -235,5 +235,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         ele.unsubscribe();
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+   
   }
 }

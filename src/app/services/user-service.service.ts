@@ -44,7 +44,7 @@ export class UserService {
     }
 
     uploadImage(id: string, image: any) {
-        return this._http.post(`${baseUrl}upload-image` + id, {
+        return this._http.post(`${baseUrl}upload-image/` + id, {
             image: image
         });
     }
@@ -58,7 +58,10 @@ export class UserService {
     }
 
     deleteFriend(userId: string, friendId: string): Observable<any>{
-        return this._http.delete(`${baseUrl}delete-friend?userId=${userId}&friendId=${friendId}`, {});     
+        return this._http.delete(`${baseUrl}delete-friend`, {params: {
+            userId: userId,
+            friendId: friendId
+        }});     
     }
 
     checkFriend(userId: string, friendId: string): Observable<any>{
