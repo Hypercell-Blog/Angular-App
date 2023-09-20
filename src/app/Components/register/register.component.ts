@@ -57,7 +57,7 @@ export class RegisterComponent implements OnDestroy {
       this.registerform.markAllAsTouched();
       return;
     }
-    const data = this.registerform.value;
+    const data = {...this.registerform.value, pic: this.defaultImageSrc};
     const sub = this.userService.registerUser(data).subscribe({
       next: (response: any) => {
         this.userService

@@ -155,9 +155,15 @@ export class ProfileComponent implements OnInit, OnDestroy,AfterViewInit {
   // Submit edit profile form
   onSubmit(){
     this.editForm = false;
-    const updated = Object.assign({}, this.editProfileForm.value, {pic: this.user.pic});
+    const updated = this.editProfileForm.value;
+    updated.pic = this.user.pic.changingThisBreaksApplicationSecurity;
     const subButton = this.userService.updateUser(this.currentUserId, updated).subscribe({           
-      next: (resonse: any) => this.user = resonse
+      next: (resonse: any) => {
+        this.user = resonse;
+        if(resonse['pic'] != this.defaultImageSrc){
+          this.user.pic = this._sanitizer.bypassSecurityTrustResourceUrl(resonse['pic']) as string;
+        }
+      }
     });
 
     this.subs.push(subButton);

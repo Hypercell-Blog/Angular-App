@@ -25,9 +25,9 @@
             <div class="mb-3">
                 <input type="email" class="form-control" formControlName="email" placeholder="Email Address"/>
               </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <input type="password" class="form-control" formControlName="password" placeholder="Password" />
-              </div>
+              </div> -->
             <div class="mb-3">
                 <input type="text" class="form-control" formControlName="facebookUsername" placeholder="Facebook Username">
             </div>
@@ -100,7 +100,6 @@
             <mat-tab label="Friends">
                 <div  class="container-sm border rounded m-2 mx-0">
                     <div class="row text-left d-flex justify-content-start m-3">
-                        <p class="text-center" *ngIf="friendsList.length == 0">No friends yet.</p>
                         <div *ngFor="let friend of friendsList" class="col-md-6 col-sm-8">
                             <a [routerLink]="['profile', friend.id]" class="link-dark friend-card m-1">
                                 <mat-card>
