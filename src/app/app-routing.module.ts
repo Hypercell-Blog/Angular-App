@@ -10,7 +10,15 @@ import { LoginComponent } from './Components/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: HomeComponent,
+    data: {
+      animation: 'HompePage'
+    }
   },
   {
     path: 'about',
@@ -22,11 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    data: {animation: 'Register'}
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {animation: 'Login'}
   },
   {
     path: "post-details/:id",
@@ -34,7 +44,10 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
-    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./Components/user/user.module').then(m => m.UserModule),
+    data: {
+      animation: 'UserProfile'
+    }
   }
 ];
 

@@ -1,3 +1,5 @@
+
+
 <div class="container">
     <div class="register-container">
         <h1>Register</h1>
@@ -6,25 +8,33 @@
                 <label for="exampleInputEmail1" class="form-label">Name </label>
                 <input formControlName="name" type="text" class="form-control">
             </div>
-            <div *ngIf="getError('name', 'required')" class="text-danger py-3">This field is required</div>
+            <div *ngIf="getError('name', 'required')" class="text-danger">This field is required</div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email </label>
                 <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
-            <div *ngIf="getError('email', 'required')" class="text-danger py-3">This field is required</div>
+            <div *ngIf="getError('email', 'required')" class="text-danger ">This field is required</div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
             </div>
-            <div *ngIf="getError('password', 'minlength')" class="text-danger py-3">Min length is 6 characters</div>
+            <div *ngIf="getError('password', 'minlength')" class="text-danger ">Min length is 8 characters</div>
+            <div *ngIf="getError('password', 'required')" class="text-danger ">This field is required</div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label"> Confirm Password</label>
                 <input formControlName="Confirmpassword" type="password" class="form-control"
-                    id="exampleInputPassword1">
+                    id="exampleInputPassword2">
             </div>
-            <div *ngIf="getError('Confirmpassword', 'required')" class="text-danger py-3">This field is required</div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div *ngIf="getError('Confirmpassword', 'required')" class="text-danger ">This field is required</div>
+            <div *ngIf="getError('Confirmpassword', 'confirmPasswordMatch')" class="text-danger ">
+                Password and Confirm Password do not match.</div>
+            <div class="button">
+                <button mat-raised-button color="primary">Submit</button>
+                <p>Have an account?<a routerLink="/login">Login</a></p>
+            </div>
+            
         </form>
+        
     </div>
 </div>

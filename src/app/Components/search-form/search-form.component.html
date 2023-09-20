@@ -1,13 +1,17 @@
-<form class="my-5">
-    <fieldset class="mx-3 d-flex">
+<form>
+    <fieldset class="d-flex flex-sm-row flex-column">
+      <div >
         <input
           type="text"
           id="textInput"
-          class="form-control mx-3"
-          style="width: 30%"
+          class="form-control mx-2 mt-3"
+          style="width: auto"
           placeholder=" post title"
           formControlName = "postTitle"
         />
-        <button type="submit" mat-raised-button color="primary">Search</button>
+      </div>
+      <div >
+        <button type="submit" mat-raised-button color="primary" class="mx-2 mt-3">Search</button>
+      </div>
     </fieldset>
 </form>
