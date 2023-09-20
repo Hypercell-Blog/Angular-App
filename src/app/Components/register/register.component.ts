@@ -22,7 +22,7 @@ export class RegisterComponent implements OnDestroy {
       {
         name: [null, [Validators.required]],
         email: [null, [Validators.required]],
-        password: [null, [Validators.minLength(6)]],
+        password: [null, [Validators.required,Validators.minLength(8)]],
         Confirmpassword: [null, [Validators.required]]
       },
       {
